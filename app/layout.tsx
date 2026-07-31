@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,10 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+      
         className={`${inter.variable} ${spaceGrotesk.variable} bg-[#050505] text-[#F5F5F5] antialiased`}
       >
         <Navbar />
         {children}
+        <WhatsAppButton />
         <Footer />
       </body>
     </html>
