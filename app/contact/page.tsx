@@ -12,6 +12,7 @@ name: "",
 email: "",
 company: "",
 message: "",
+website: "",
 });
 
 const handleChange = (
@@ -57,6 +58,7 @@ try {
     email: "",
     company: "",
     message: "",
+    website: "",
   });
 } catch (error) {
   console.error("Contact form error:", error);
@@ -72,6 +74,7 @@ try {
 };
 
 return ( <main className="min-h-screen bg-[#050505] text-[#F5F5F5]"> <section className="relative overflow-hidden border-b border-white/10 pt-20"> <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
+
 
     <div className="absolute right-[-10%] top-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[140px]" />
 
@@ -160,6 +163,17 @@ return ( <main className="min-h-screen bg-[#050505] text-[#F5F5F5]"> <section cl
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8">
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={handleChange}
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
+
             <div className="grid gap-8 sm:grid-cols-2">
               <div>
                 <label className="mb-3 block text-sm text-[#A1A1AA]">
