@@ -38,7 +38,7 @@ if (!process.env.RESEND_API_KEY) {
 }
 
 const result = await resend.emails.send({
-  from: "OLYR Labs <onboarding@resend.dev>",
+  from: "OLYR Labs <contact@olyrlabs.com>",
   to: ["olyrlabs@gmail.com"],
   replyTo: email,
   subject: `New message from ${name}`,
