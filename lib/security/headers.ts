@@ -1,8 +1,26 @@
-export function analyzeHeaders(headers: Headers) {
-
-    const findings = [];
+export type HeaderFinding = {
+    title: string;
+    severity: string;
+    description: string;
+  };
+  
+  
+  export type HeaderAnalysis = {
+    score: number;
+    findings: HeaderFinding[];
+  };
+  
+  
+  
+  export function analyzeHeaders(
+    headers: Headers
+  ): HeaderAnalysis {
+  
+  
+    const findings: HeaderFinding[] = [];
   
     let score = 100;
+  
   
   
     const checks = [
@@ -29,28 +47,42 @@ export function analyzeHeaders(headers: Headers) {
     ];
   
   
-    checks.forEach((check)=>{
   
-      if(!headers.has(check.header)){
+    checks.forEach((check) => {
+  
+  
+      if (!headers.has(check.header)) {
+  
   
         score -= 10;
   
   
         findings.push({
+  
           title: check.name,
+  
           severity: check.risk,
+  
           description:
             `${check.name} header is missing.`,
+  
         });
   
+  
       }
+  
   
     });
   
   
+  
     return {
+  
       score,
+  
       findings,
+  
     };
+  
   
   }
