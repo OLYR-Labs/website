@@ -54,7 +54,7 @@ export default function Home() {
 return ( <main className="min-h-screen bg-[#050505] text-[#F5F5F5]">
 {/* Hero */} <section className="relative flex min-h-screen items-center overflow-hidden"> <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-```
+
     <div className="absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[140px]" />
 
     <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-8">
