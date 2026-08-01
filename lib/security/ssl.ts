@@ -12,6 +12,27 @@ type SSLAnalysis = {
 
 
 
+function normalizeCertificateField(
+  value: string | string[] | undefined
+): string | null {
+
+  if (!value) {
+    return null;
+  }
+
+
+  if (Array.isArray(value)) {
+    return value.join(", ");
+  }
+
+
+  return value;
+
+}
+
+
+
+
 export async function analyzeSSL(
   url: string
 ): Promise<SSLAnalysis> {
@@ -50,8 +71,10 @@ export async function analyzeSSL(
 
 
 
-
-            if (!certificate || !certificate.valid_to) {
+            if (
+              !certificate ||
+              !certificate.valid_to
+            ) {
 
 
               resolve({
@@ -104,6 +127,7 @@ export async function analyzeSSL(
                   60 *
                   60 *
                   24
+
                 )
 
               );
@@ -116,14 +140,23 @@ export async function analyzeSSL(
 
               valid:true,
 
+
               issuer:
-                certificate.issuer?.O ||
-                certificate.issuer?.CN ||
+                normalizeCertificateField(
+                  certificate.issuer?.O
+                )
+                ||
+                normalizeCertificateField(
+                  certificate.issuer?.CN
+                )
+                ||
                 "Unknown",
+
 
 
               expires:
                 expiry.toISOString(),
+
 
 
               daysRemaining,
@@ -133,10 +166,8 @@ export async function analyzeSSL(
               risk:
 
                 daysRemaining < 30
-
-                ? "Medium"
-
-                : "Low",
+                  ? "Medium"
+                  : "Low",
 
             });
 
@@ -171,6 +202,7 @@ export async function analyzeSSL(
 
         }
       );
+
 
 
 
