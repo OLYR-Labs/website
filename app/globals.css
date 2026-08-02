@@ -11,10 +11,8 @@
 --blue: #3b82f6;
 --blue-light: #60a5fa;
 
-/* Very subtle blue atmospheric light */
 --blue-glow: rgba(59, 130, 246, 0.16);
 
-/* Liquid glass base */
 --glass-bg: rgba(255, 255, 255, 0.025);
 --glass-border: rgba(255, 255, 255, 0.11);
 --glass-highlight: rgba(255, 255, 255, 0.12);
@@ -47,17 +45,27 @@ margin: 0;
 min-height: 100vh;
 background: #000000;
 color: var(--foreground);
-
 font-family:
 var(--font-inter),
 Arial,
 Helvetica,
 sans-serif;
-
 overflow-x: hidden;
-
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+button {
+transition-duration: 300ms;
+}
+
+button {
+cursor: pointer;
+}
+
+button:disabled {
+cursor: not-allowed;
 }
 
 /* ========================================================= */
@@ -94,24 +102,6 @@ background: #3f3f46;
 /* LIQUID GLASS SYSTEM */
 /* ========================================================= */
 
-/*
-Design direction:
-
-Pure black foundation.
-Subtle transparent glass.
-Very restrained white reflection.
-Soft blue atmospheric light.
-
-The goal is:
-BLACK FIRST.
-BLUE SECOND.
-GLASS THIRD.
-*/
-
-/* ========================================================= */
-/* GLASS PANEL */
-/* ========================================================= */
-
 .glass-panel {
 position: relative;
 isolation: isolate;
@@ -143,8 +133,6 @@ blur(35px)
 saturate(135%);
 }
 
-/* Subtle glass reflection */
-
 .glass-panel::before {
 content: "";
 
@@ -167,8 +155,6 @@ opacity: 0.7;
 
 z-index: -1;
 }
-
-/* Soft blue liquid edge */
 
 .glass-panel::after {
 content: "";
@@ -206,13 +192,6 @@ z-index: 20;
 /* GLASS SECTION */
 /* ========================================================= */
 
-/*
-This is the visual benchmark.
-
-This should be the most balanced glass surface
-across the entire OLYR Labs website.
-*/
-
 .glass-section {
 position: relative;
 isolation: isolate;
@@ -244,8 +223,6 @@ blur(32px)
 saturate(135%);
 }
 
-/* Very soft environmental lighting */
-
 .glass-section::before {
 content: "";
 
@@ -272,14 +249,6 @@ z-index: -1;
 /* ========================================================= */
 /* GLASS CARD */
 /* ========================================================= */
-
-/*
-Cards are intentionally more restrained.
-
-No heavy glossy treatment.
-No strong white reflection.
-Subtle blue atmosphere only on interaction.
-*/
 
 .glass-card {
 position: relative;
@@ -315,8 +284,6 @@ box-shadow 500ms ease,
 background 500ms ease;
 }
 
-/* Minimal reflection */
-
 .glass-card::before {
 content: "";
 
@@ -344,8 +311,6 @@ transform 700ms ease;
 z-index: -1;
 }
 
-/* Very subtle blue mouse light */
-
 .glass-card::after {
 content: "";
 
@@ -357,8 +322,7 @@ height: 280px;
 left: var(--mouse-x, 50%);
 top: var(--mouse-y, 50%);
 
-transform:
-translate(-50%, -50%);
+transform: translate(-50%, -50%);
 
 pointer-events: none;
 
@@ -376,8 +340,7 @@ filter: blur(40px);
 
 opacity: 0;
 
-transition:
-opacity 500ms ease;
+transition: opacity 500ms ease;
 }
 
 .glass-card:hover {
@@ -778,23 +741,6 @@ rgba(59, 130, 246, 0.07);
 box-shadow:
 0 0 50px
 rgba(59, 130, 246, 0.14);
-}
-
-/* ========================================================= */
-/* INTERACTION DEFAULTS */
-/* ========================================================= */
-
-a,
-button {
-transition-duration: 300ms;
-}
-
-button {
-cursor: pointer;
-}
-
-button:disabled {
-cursor: not-allowed;
 }
 
 /* ========================================================= */
