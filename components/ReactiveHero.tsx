@@ -5,14 +5,13 @@ import { useEffect, useRef } from "react";
 export default function ReactiveHero() {
 const containerRef = useRef<HTMLDivElement>(null);
 const glowRef = useRef<HTMLDivElement>(null);
-const gridRef = useRef<HTMLDivElement>(null);
 
 useEffect(() => {
 const container = containerRef.current;
 const glow = glowRef.current;
-const grid = gridRef.current;
 
-if (!container || !glow || !grid) return;
+
+if (!container || !glow) return;
 
 const handleMouseMove = (event: MouseEvent) => {
   const rect = container.getBoundingClientRect();
@@ -25,20 +24,11 @@ const handleMouseMove = (event: MouseEvent) => {
 
   glow.style.left = `${percentX}%`;
   glow.style.top = `${percentY}%`;
-
-  grid.style.transform = `
-    translate(
-      ${(percentX - 50) * 0.08}px,
-      ${(percentY - 50) * 0.08}px
-    )
-  `;
 };
 
 const handleMouseLeave = () => {
   glow.style.left = "50%";
   glow.style.top = "50%";
-
-  grid.style.transform = "translate(0px, 0px)";
 };
 
 container.addEventListener("mousemove", handleMouseMove);
@@ -49,20 +39,18 @@ return () => {
   container.removeEventListener("mouseleave", handleMouseLeave);
 };
 
+
 }, []);
 
-return (
-<div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden" >
-{/* Interactive blue energy */}
-<div ref={glowRef} className="absolute h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[140px] transition-[left,top] duration-700 ease-out" />
+return ( <div
+   ref={containerRef}
+   className="pointer-events-none absolute inset-0 overflow-hidden"
+ >
+{/* Interactive blue energy */} <div
+     ref={glowRef}
+     className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[140px] transition-[left,top] duration-700 ease-out"
+   />
 
-  {/* Moving grid */}
-  <div
-    ref={gridRef}
-    className="absolute -inset-20 transition-transform duration-1000 ease-out"
-  >
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:80px_80px]" />
-  </div>
 
   {/* Secondary ambient glow */}
   <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[140px]" />
@@ -76,6 +64,7 @@ return (
 
   <div className="absolute left-[35%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.9)] [animation-delay:3s]" />
 </div>
+
 
 );
 }
