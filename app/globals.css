@@ -10,11 +10,14 @@
 
 --blue: #3b82f6;
 --blue-light: #60a5fa;
---blue-glow: rgba(59, 130, 246, 0.28);
 
---glass-bg: rgba(255, 255, 255, 0.035);
---glass-border: rgba(255, 255, 255, 0.14);
---glass-highlight: rgba(255, 255, 255, 0.18);
+/* Very subtle blue atmospheric light */
+--blue-glow: rgba(59, 130, 246, 0.16);
+
+/* Liquid glass base */
+--glass-bg: rgba(255, 255, 255, 0.025);
+--glass-border: rgba(255, 255, 255, 0.11);
+--glass-highlight: rgba(255, 255, 255, 0.12);
 }
 
 @theme inline {
@@ -31,7 +34,7 @@
 
 * {
   box-sizing: border-box;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.08);
   }
 
 html {
@@ -92,17 +95,22 @@ background: #3f3f46;
 /* ========================================================= */
 
 /*
-Large glass container.
+Design direction:
 
-The important ingredients:
+Pure black foundation.
+Subtle transparent glass.
+Very restrained white reflection.
+Soft blue atmospheric light.
 
-* translucent background
-* strong backdrop blur
-* saturation
-* inner highlight
-* luminous border
-* deep shadow
-  */
+The goal is:
+BLACK FIRST.
+BLUE SECOND.
+GLASS THIRD.
+*/
+
+/* ========================================================= */
+/* GLASS PANEL */
+/* ========================================================= */
 
 .glass-panel {
 position: relative;
@@ -112,31 +120,30 @@ overflow: hidden;
 background:
 linear-gradient(
 135deg,
-rgba(255, 255, 255, 0.075),
-rgba(255, 255, 255, 0.018) 35%,
-rgba(255, 255, 255, 0.025) 65%,
-rgba(59, 130, 246, 0.025)
+rgba(255, 255, 255, 0.045),
+rgba(255, 255, 255, 0.012) 38%,
+rgba(255, 255, 255, 0.018) 70%,
+rgba(59, 130, 246, 0.018)
 );
 
-border: 1px solid rgba(255, 255, 255, 0.15);
+border: 1px solid rgba(255, 255, 255, 0.11);
 
 box-shadow:
-inset 0 1px 0 rgba(255, 255, 255, 0.18),
-inset 0 -1px 0 rgba(255, 255, 255, 0.035),
-inset 1px 0 0 rgba(255, 255, 255, 0.04),
-0 30px 100px rgba(0, 0, 0, 0.55),
-0 0 80px rgba(59, 130, 246, 0.025);
+inset 0 1px 0 rgba(255, 255, 255, 0.11),
+inset 0 -1px 0 rgba(255, 255, 255, 0.018),
+0 30px 100px rgba(0, 0, 0, 0.6),
+0 0 100px rgba(59, 130, 246, 0.018);
 
 backdrop-filter:
 blur(35px)
-saturate(160%);
+saturate(135%);
 
 -webkit-backdrop-filter:
 blur(35px)
-saturate(160%);
+saturate(135%);
 }
 
-/* Main glass reflection */
+/* Subtle glass reflection */
 
 .glass-panel::before {
 content: "";
@@ -149,19 +156,19 @@ pointer-events: none;
 background:
 linear-gradient(
 115deg,
-rgba(255, 255, 255, 0.14) 0%,
-rgba(255, 255, 255, 0.035) 18%,
+rgba(255, 255, 255, 0.075) 0%,
+rgba(255, 255, 255, 0.018) 18%,
 transparent 38%,
 transparent 70%,
-rgba(96, 165, 250, 0.035) 100%
+rgba(96, 165, 250, 0.025) 100%
 );
 
-opacity: 0.8;
+opacity: 0.7;
 
 z-index: -1;
 }
 
-/* Soft luminous edge */
+/* Soft blue liquid edge */
 
 .glass-panel::after {
 content: "";
@@ -176,10 +183,10 @@ pointer-events: none;
 background:
 linear-gradient(
 120deg,
-rgba(255, 255, 255, 0.12),
-transparent 20%,
-transparent 75%,
-rgba(59, 130, 246, 0.06)
+rgba(255, 255, 255, 0.07),
+transparent 25%,
+transparent 72%,
+rgba(59, 130, 246, 0.035)
 );
 
 mask:
@@ -190,7 +197,7 @@ mask-composite: exclude;
 
 padding: 1px;
 
-opacity: 0.7;
+opacity: 0.6;
 
 z-index: 20;
 }
@@ -198,6 +205,13 @@ z-index: 20;
 /* ========================================================= */
 /* GLASS SECTION */
 /* ========================================================= */
+
+/*
+This is the visual benchmark.
+
+This should be the most balanced glass surface
+across the entire OLYR Labs website.
+*/
 
 .glass-section {
 position: relative;
@@ -207,27 +221,30 @@ overflow: hidden;
 background:
 linear-gradient(
 135deg,
-rgba(255, 255, 255, 0.055),
-rgba(255, 255, 255, 0.012) 40%,
-rgba(255, 255, 255, 0.025) 70%,
-rgba(59, 130, 246, 0.025)
+rgba(255, 255, 255, 0.045),
+rgba(255, 255, 255, 0.01) 40%,
+rgba(255, 255, 255, 0.018) 70%,
+rgba(59, 130, 246, 0.018)
 );
 
-border: 1px solid rgba(255, 255, 255, 0.13);
+border: 1px solid rgba(255, 255, 255, 0.10);
 
 box-shadow:
-inset 0 1px 0 rgba(255, 255, 255, 0.15),
-inset 0 -1px 0 rgba(255, 255, 255, 0.025),
-0 30px 100px rgba(0, 0, 0, 0.45);
+inset 0 1px 0 rgba(255, 255, 255, 0.10),
+inset 0 -1px 0 rgba(255, 255, 255, 0.018),
+0 30px 100px rgba(0, 0, 0, 0.55),
+0 0 90px rgba(59, 130, 246, 0.015);
 
 backdrop-filter:
 blur(32px)
-saturate(150%);
+saturate(135%);
 
 -webkit-backdrop-filter:
 blur(32px)
-saturate(150%);
+saturate(135%);
 }
+
+/* Very soft environmental lighting */
 
 .glass-section::before {
 content: "";
@@ -240,13 +257,13 @@ pointer-events: none;
 background:
 radial-gradient(
 circle at 10% 0%,
-rgba(255, 255, 255, 0.09),
-transparent 30%
+rgba(255, 255, 255, 0.055),
+transparent 28%
 ),
 radial-gradient(
 circle at 90% 100%,
-rgba(59, 130, 246, 0.05),
-transparent 35%
+rgba(59, 130, 246, 0.035),
+transparent 38%
 );
 
 z-index: -1;
@@ -256,6 +273,14 @@ z-index: -1;
 /* GLASS CARD */
 /* ========================================================= */
 
+/*
+Cards are intentionally more restrained.
+
+No heavy glossy treatment.
+No strong white reflection.
+Subtle blue atmosphere only on interaction.
+*/
+
 .glass-card {
 position: relative;
 isolation: isolate;
@@ -264,25 +289,24 @@ overflow: hidden;
 background:
 linear-gradient(
 135deg,
-rgba(255, 255, 255, 0.065),
-rgba(255, 255, 255, 0.018) 45%,
-rgba(59, 130, 246, 0.018)
+rgba(255, 255, 255, 0.035),
+rgba(255, 255, 255, 0.01) 50%,
+rgba(59, 130, 246, 0.012)
 );
 
-border: 1px solid rgba(255, 255, 255, 0.13);
+border: 1px solid rgba(255, 255, 255, 0.09);
 
 box-shadow:
-inset 0 1px 0 rgba(255, 255, 255, 0.15),
-inset 0 -1px 0 rgba(255, 255, 255, 0.025),
-0 25px 80px rgba(0, 0, 0, 0.4);
+inset 0 1px 0 rgba(255, 255, 255, 0.07),
+0 25px 80px rgba(0, 0, 0, 0.45);
 
 backdrop-filter:
-blur(28px)
-saturate(160%);
+blur(24px)
+saturate(130%);
 
 -webkit-backdrop-filter:
-blur(28px)
-saturate(160%);
+blur(24px)
+saturate(130%);
 
 transition:
 transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -291,7 +315,7 @@ box-shadow 500ms ease,
 background 500ms ease;
 }
 
-/* Glass reflection */
+/* Minimal reflection */
 
 .glass-card::before {
 content: "";
@@ -304,14 +328,14 @@ pointer-events: none;
 background:
 linear-gradient(
 115deg,
-rgba(255, 255, 255, 0.13),
-rgba(255, 255, 255, 0.025) 25%,
+rgba(255, 255, 255, 0.055),
+rgba(255, 255, 255, 0.01) 25%,
 transparent 45%,
 transparent 75%,
-rgba(96, 165, 250, 0.04)
+rgba(96, 165, 250, 0.02)
 );
 
-opacity: 0.75;
+opacity: 0.6;
 
 transition:
 opacity 500ms ease,
@@ -320,7 +344,7 @@ transform 700ms ease;
 z-index: -1;
 }
 
-/* Soft liquid glow */
+/* Very subtle blue mouse light */
 
 .glass-card::after {
 content: "";
@@ -343,12 +367,12 @@ border-radius: 999px;
 background:
 radial-gradient(
 circle,
-rgba(96, 165, 250, 0.13),
-rgba(59, 130, 246, 0.04) 35%,
+rgba(96, 165, 250, 0.07),
+rgba(59, 130, 246, 0.02) 38%,
 transparent 70%
 );
 
-filter: blur(35px);
+filter: blur(40px);
 
 opacity: 0;
 
@@ -357,16 +381,16 @@ opacity 500ms ease;
 }
 
 .glass-card:hover {
-border-color: rgba(255, 255, 255, 0.22);
+border-color: rgba(255, 255, 255, 0.14);
 
 box-shadow:
-inset 0 1px 0 rgba(255, 255, 255, 0.2),
-0 35px 100px rgba(0, 0, 0, 0.5),
-0 0 50px rgba(59, 130, 246, 0.045);
+inset 0 1px 0 rgba(255, 255, 255, 0.10),
+0 35px 100px rgba(0, 0, 0, 0.55),
+0 0 60px rgba(59, 130, 246, 0.025);
 }
 
 .glass-card:hover::before {
-opacity: 1;
+opacity: 0.8;
 transform: translateX(2%);
 }
 
@@ -395,7 +419,7 @@ pointer-events: none;
 background:
 radial-gradient(
 500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-rgba(59, 130, 246, 0.12),
+rgba(59, 130, 246, 0.06),
 transparent 45%
 );
 
@@ -418,26 +442,26 @@ opacity: 1;
 position: relative;
 overflow: hidden;
 
-border: 1px solid rgba(255, 255, 255, 0.16);
+border: 1px solid rgba(255, 255, 255, 0.11);
 
 background:
 linear-gradient(
 135deg,
-rgba(255, 255, 255, 0.12),
-rgba(255, 255, 255, 0.035)
+rgba(255, 255, 255, 0.065),
+rgba(255, 255, 255, 0.018)
 );
 
 box-shadow:
-inset 0 1px 0 rgba(255, 255, 255, 0.18),
-0 10px 40px rgba(0, 0, 0, 0.25);
+inset 0 1px 0 rgba(255, 255, 255, 0.10),
+0 10px 40px rgba(0, 0, 0, 0.3);
 
 backdrop-filter:
 blur(20px)
-saturate(150%);
+saturate(135%);
 
 -webkit-backdrop-filter:
 blur(20px)
-saturate(150%);
+saturate(135%);
 
 transition:
 border-color 300ms ease,
@@ -447,18 +471,18 @@ transform 300ms ease;
 }
 
 .glass-button:hover {
-border-color: rgba(96, 165, 250, 0.55);
+border-color: rgba(96, 165, 250, 0.38);
 
 background:
 linear-gradient(
 135deg,
-rgba(96, 165, 250, 0.2),
-rgba(255, 255, 255, 0.06)
+rgba(96, 165, 250, 0.10),
+rgba(255, 255, 255, 0.025)
 );
 
 box-shadow:
-inset 0 1px 0 rgba(255, 255, 255, 0.25),
-0 15px 50px rgba(59, 130, 246, 0.12);
+inset 0 1px 0 rgba(255, 255, 255, 0.13),
+0 15px 50px rgba(59, 130, 246, 0.08);
 
 transform: translateY(-2px);
 }
@@ -526,13 +550,13 @@ opacity: 0;
 @keyframes glow-pulse {
 0%,
 100% {
-opacity: 0.5;
+opacity: 0.4;
 transform: scale(1);
 }
 
 50% {
-opacity: 0.8;
-transform: scale(1.08);
+opacity: 0.65;
+transform: scale(1.06);
 }
 }
 
@@ -551,13 +575,13 @@ infinite;
 @keyframes blue-pulse {
 0%,
 100% {
-opacity: 0.4;
+opacity: 0.25;
 transform: scale(1);
 }
 
 50% {
-opacity: 0.8;
-transform: scale(1.15);
+opacity: 0.55;
+transform: scale(1.1);
 }
 }
 
@@ -737,7 +761,7 @@ color: var(--blue-light);
 
 text-shadow:
 0 0 20px
-rgba(59, 130, 246, 0.35);
+rgba(59, 130, 246, 0.25);
 }
 
 /* ========================================================= */
@@ -747,13 +771,13 @@ rgba(59, 130, 246, 0.35);
 .blue-glow {
 box-shadow:
 0 0 30px
-rgba(59, 130, 246, 0.12);
+rgba(59, 130, 246, 0.07);
 }
 
 .blue-glow:hover {
 box-shadow:
 0 0 50px
-rgba(59, 130, 246, 0.22);
+rgba(59, 130, 246, 0.14);
 }
 
 /* ========================================================= */
