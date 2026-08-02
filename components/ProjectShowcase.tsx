@@ -62,17 +62,12 @@ y: 0,
 
 const [hoveredNode, setHoveredNode] = useState<number | null>(null);
 
-const handleMouseMove = (
-event: MouseEvent<HTMLDivElement>
-) => {
+const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
 const rect = event.currentTarget.getBoundingClientRect();
 
 
-const x =
-  ((event.clientX - rect.left) / rect.width) * 100;
-
-const y =
-  ((event.clientY - rect.top) / rect.height) * 100;
+const x = ((event.clientX - rect.left) / rect.width) * 100;
+const y = ((event.clientY - rect.top) / rect.height) * 100;
 
 setPosition({
   x,
@@ -108,7 +103,7 @@ return (
 <div
 onMouseMove={handleMouseMove}
 onMouseLeave={handleMouseLeave}
-className="group relative min-h-[430px] overflow-hidden rounded-[1.65rem] border border-white/[0.14] bg-black/40 transition-transform duration-300 ease-out sm:min-h-[500px] sm:rounded-[2.4rem]"
+className="group relative min-h-[500px] overflow-hidden rounded-[2.4rem] border border-white/[0.12] bg-black/50 transition-transform duration-300 ease-out"
 style={{
 transform: `           perspective(1200px)
           rotateX(${rotation.x}deg)
@@ -116,15 +111,12 @@ transform: `           perspective(1200px)
         `,
 }}
 >
-{/* Glass reflection */}
+{/* Neutral glass reflection */} <div className="pointer-events-none absolute inset-0 z-30 rounded-[2.4rem] bg-[linear-gradient(120deg,rgba(255,255,255,0.035),transparent_28%,transparent_72%,rgba(255,255,255,0.015))]" />
 
 
-  <div className="pointer-events-none absolute inset-0 z-30 rounded-[1.65rem] bg-[linear-gradient(120deg,rgba(255,255,255,0.04),transparent_25%,transparent_70%,rgba(96,165,250,0.02))] sm:rounded-[2.4rem]" />
-
-  {/* Mouse glow */}
-
+  {/* Very subtle mouse light */}
   <div
-    className="pointer-events-none absolute h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[130px] transition-[left,top] duration-700 ease-out sm:h-[500px] sm:w-[500px] sm:blur-[150px]"
+    className="pointer-events-none absolute h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[170px] transition-[left,top] duration-700 ease-out"
     style={{
       left: `${position.x}%`,
       top: `${position.y}%`,
@@ -132,7 +124,6 @@ transform: `           perspective(1200px)
   />
 
   {/* Floating nodes */}
-
   <div className="absolute inset-0 z-40">
     {nodes.map((node) => {
       const isHovered = hoveredNode === node.id;
@@ -148,40 +139,32 @@ transform: `           perspective(1200px)
         >
           <button
             type="button"
-            aria-label={`Explore ${node.label}`}
+            aria-label={node.label}
             onMouseEnter={() => setHoveredNode(node.id)}
             onMouseLeave={() => setHoveredNode(null)}
             onClick={(event) => event.stopPropagation()}
-            className="group/node relative flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/[0.025] backdrop-blur-xl transition-all duration-500 sm:h-16 sm:w-16"
+            className="group/node relative flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-xl transition-all duration-500"
           >
-            {/* Outer glow */}
-
             <span
-              className={`pointer-events-none absolute inset-0 rounded-full bg-blue-500/10 blur-xl transition-all duration-500 ${
+              className={`pointer-events-none absolute inset-0 rounded-full bg-blue-500/[0.06] blur-xl transition-all duration-500 ${
                 isHovered
                   ? "scale-[2] opacity-100"
                   : "scale-100 opacity-40"
               }`}
             />
 
-            {/* Glass reflection */}
-
-            <span className="pointer-events-none absolute inset-[1px] rounded-full bg-[linear-gradient(135deg,rgba(255,255,255,0.10),transparent_45%,rgba(59,130,246,0.03))]" />
-
-            {/* Node core */}
+            <span className="pointer-events-none absolute inset-[1px] rounded-full bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_45%,rgba(255,255,255,0.015))]" />
 
             <span
-              className={`relative z-10 block h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.9)] transition-all duration-500 sm:h-2 sm:w-2 ${node.animation} ${
+              className={`relative z-10 block h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(59,130,246,0.65)] transition-all duration-500 ${node.animation} ${
                 isHovered
-                  ? "scale-[2.5] bg-white shadow-[0_0_35px_rgba(96,165,250,1)]"
+                  ? "scale-[2.5] bg-white shadow-[0_0_30px_rgba(96,165,250,0.8)]"
                   : ""
               }`}
             />
 
-            {/* Label */}
-
             <span
-              className={`pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/15 bg-black/50 px-3 py-1.5 text-[8px] font-medium tracking-[0.2em] text-white shadow-[0_15px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-300 sm:mt-4 sm:px-4 sm:py-2 sm:text-[9px] ${
+              className={`pointer-events-none absolute left-1/2 top-full mt-4 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/10 bg-black/70 px-4 py-2 text-[9px] font-medium tracking-[0.2em] text-white shadow-[0_15px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-300 ${
                 isHovered
                   ? "translate-y-0 opacity-100"
                   : "translate-y-2 opacity-0"
@@ -196,11 +179,9 @@ transform: `           perspective(1200px)
   </div>
 
   {/* Connection lines */}
-
   <svg
     className="pointer-events-none absolute inset-0 z-10 h-full w-full"
     preserveAspectRatio="none"
-    aria-hidden="true"
   >
     <line
       x1="18%"
@@ -211,8 +192,8 @@ transform: `           perspective(1200px)
       strokeWidth="1"
       className={
         hoveredNode === 1 || hoveredNode === 5
-          ? "opacity-80"
-          : "opacity-20"
+          ? "opacity-60"
+          : "opacity-15"
       }
     />
 
@@ -225,8 +206,8 @@ transform: `           perspective(1200px)
       strokeWidth="1"
       className={
         hoveredNode === 2 || hoveredNode === 5
-          ? "opacity-80"
-          : "opacity-20"
+          ? "opacity-60"
+          : "opacity-15"
       }
     />
 
@@ -239,8 +220,8 @@ transform: `           perspective(1200px)
       strokeWidth="1"
       className={
         hoveredNode === 2 || hoveredNode === 3
-          ? "opacity-80"
-          : "opacity-20"
+          ? "opacity-60"
+          : "opacity-15"
       }
     />
 
@@ -253,8 +234,8 @@ transform: `           perspective(1200px)
       strokeWidth="1"
       className={
         hoveredNode === 3 || hoveredNode === 4
-          ? "opacity-80"
-          : "opacity-20"
+          ? "opacity-60"
+          : "opacity-15"
       }
     />
 
@@ -267,51 +248,42 @@ transform: `           perspective(1200px)
       strokeWidth="1"
       className={
         hoveredNode === 4 || hoveredNode === 1
-          ? "opacity-80"
-          : "opacity-20"
+          ? "opacity-60"
+          : "opacity-15"
       }
     />
   </svg>
 
   {/* Clickable content */}
-
   <Link
     href="/projects"
     aria-label="Explore OLYR Labs projects and case studies"
-    className="absolute inset-0 z-50 flex min-h-[430px] flex-col justify-between p-6 sm:min-h-[500px] sm:p-12"
+    className="absolute inset-0 z-50 flex min-h-[500px] flex-col justify-between p-8 sm:p-12"
   >
-    {/* Top */}
-
     <div className="flex items-center justify-between">
-      <span className="text-[9px] uppercase tracking-[0.3em] text-[#71717A] sm:text-xs">
+      <span className="text-xs uppercase tracking-[0.3em] text-[#71717A]">
         OLYR / PROJECTS
       </span>
 
-      <span className="text-xs text-[#52525B] sm:text-sm">
-        001
-      </span>
+      <span className="text-sm text-[#52525B]">001</span>
     </div>
 
-    {/* Main */}
-
     <div>
-      <p className="text-[9px] uppercase tracking-[0.3em] text-blue-400 sm:text-xs">
+      <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
         Featured Project
       </p>
 
-      <h3 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.05em] transition duration-500 group-hover:translate-x-2 sm:mt-6 sm:text-7xl">
+      <h3 className="mt-6 max-w-3xl text-5xl font-semibold tracking-[-0.05em] transition duration-500 group-hover:translate-x-2 sm:text-7xl">
         Explore what we&apos;re building.
       </h3>
     </div>
 
-    {/* Bottom */}
-
-    <div className="flex items-center justify-between border-t border-white/10 pt-5 sm:pt-6">
-      <span className="text-xs text-[#71717A] sm:text-sm">
-        Projects &amp; Case Studies
+    <div className="flex items-center justify-between border-t border-white/10 pt-6">
+      <span className="text-sm text-[#71717A]">
+        Projects & Case Studies
       </span>
 
-      <span className="glass-button flex h-10 w-10 items-center justify-center rounded-full text-white transition-all duration-300 group-hover:translate-x-1 group-hover:border-blue-400 group-hover:text-blue-400 sm:h-12 sm:w-12">
+      <span className="glass-button flex h-12 w-12 items-center justify-center rounded-full text-white transition-all duration-300 group-hover:translate-x-1 group-hover:border-blue-400 group-hover:text-blue-400">
         →
       </span>
     </div>
