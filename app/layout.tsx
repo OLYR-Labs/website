@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ReactiveCursor from "@/components/ReactiveCursor";
 
 
 
@@ -51,6 +52,7 @@ export default function RootLayout({
         
 
         <Navbar />
+        <ReactiveCursor />
 
         {children}
 
