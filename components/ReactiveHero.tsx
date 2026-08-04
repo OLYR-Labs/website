@@ -12,6 +12,11 @@ export default function ReactiveHero() {
 
     if (!container || !glow) return;
 
+    // Disable mouse tracking on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
     let frame = 0;
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -25,8 +30,8 @@ export default function ReactiveHero() {
 
         glow.style.transform = `
           translate3d(
-            ${x - 250}px,
-            ${y - 250}px,
+            ${x - 210}px,
+            ${y - 210}px,
             0
           )
         `;
@@ -68,20 +73,26 @@ export default function ReactiveHero() {
       ref={containerRef}
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
+      {/* Main reactive glow */}
       <div
         ref={glowRef}
-        className="absolute left-0 top-0 h-[420px] w-[420px] rounded-full bg-blue-500/[0.025] blur-[110px] transition-transform duration-700 ease-out will-change-transform"
+        className="absolute left-0 top-0 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[90px] transition-transform duration-700 ease-out will-change-transform sm:h-[500px] sm:w-[500px] sm:blur-[140px]"
       />
 
-      <div className="absolute left-1/2 top-1/3 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-white/[0.01] blur-[140px]" />
+      {/* Ambient white light */}
+      <div className="absolute left-1/2 top-1/3 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-white/[0.01] blur-[100px] sm:h-[550px] sm:w-[550px] sm:blur-[160px]" />
 
-      <div className="absolute -right-40 top-1/3 h-[350px] w-[350px] rounded-full bg-blue-500/[0.015] blur-[120px]" />
+      {/* Blue atmosphere */}
+      <div className="absolute -right-40 top-1/3 h-[280px] w-[280px] rounded-full bg-blue-500/[0.015] blur-[90px] sm:h-[400px] sm:w-[400px] sm:blur-[140px]" />
 
-      <div className="absolute left-[20%] top-[30%] h-1 w-1 rounded-full bg-blue-400/[0.4]" />
+      {/* Floating particles */}
+      <div className="absolute left-[20%] top-[30%] h-1 w-1 rounded-full bg-blue-400/[0.4] sm:animate-pulse" />
 
-      <div className="absolute left-[70%] top-[25%] h-1 w-1 rounded-full bg-blue-400/[0.4]" />
+      <div className="absolute left-[70%] top-[25%] h-1 w-1 rounded-full bg-blue-400/[0.4] sm:animate-pulse" />
 
-      <div className="absolute left-[80%] top-[65%] h-1 w-1 rounded-full bg-blue-400/[0.4]" />
+      <div className="absolute left-[80%] top-[65%] h-1 w-1 rounded-full bg-blue-400/[0.4] sm:animate-pulse" />
+
+      <div className="absolute left-[35%] top-[75%] h-1 w-1 rounded-full bg-blue-400/[0.4] sm:animate-pulse" />
     </div>
   );
 }
