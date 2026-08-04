@@ -53,9 +53,9 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
 {/* HERO */}
 {/* ========================================================= */}
 
-```
+
   <section className="relative px-4 py-4 sm:px-6 lg:px-8">
-    <div className="glass-panel relative flex min-h-screen items-center rounded-[2rem]">
+    <div className="relative flex min-h-screen items-center rounded-[2rem]">
       {/* Neutral atmospheric lighting */}
 
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.012] blur-[180px]" />
@@ -128,8 +128,6 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
 
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
               <div className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.035] blur-[120px] transition duration-1000 group-hover:scale-150 group-hover:bg-blue-500/[0.06]" />
-
-              {/* Very subtle energy lines */}
 
               <div className="absolute -left-20 top-1/2 h-px w-[140%] rotate-12 bg-gradient-to-r from-transparent via-blue-400/[0.12] to-transparent animate-[pulse_4s_ease-in-out_infinite]" />
 
@@ -224,8 +222,6 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
         </div>
       </Reveal>
 
-      {/* SERVICE CARDS */}
-
       <div className="grid overflow-hidden rounded-2xl border border-white/[0.08] md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
           <Reveal key={service.number} delay={index * 80}>
@@ -298,10 +294,7 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
       <Reveal>
         <p className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-[#F5F5F5] sm:text-7xl lg:text-8xl">
           We turn ideas into
-          <span className="text-blue-400">
-            {" "}
-            digital reality.
-          </span>
+          <span className="text-blue-400"> digital reality.</span>
         </p>
       </Reveal>
     </div>

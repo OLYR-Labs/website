@@ -46,26 +46,31 @@ return ( <div
    ref={containerRef}
    className="pointer-events-none absolute inset-0 overflow-hidden"
  >
-{/* Very subtle interactive blue atmosphere */} <div
-     ref={glowRef}
-     className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.022] blur-[180px] transition-[left,top] duration-1000 ease-out"
-   />
+{/* Very subtle interactive atmosphere */}
 
 
-  {/* Neutral central atmosphere */}
-  <div className="absolute left-1/2 top-1/3 h-[550px] w-[550px] -translate-x-1/2 rounded-full bg-white/[0.01] blur-[200px]" />
+  <div
+    ref={glowRef}
+    className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.035] blur-[160px] transition-[left,top] duration-1000 ease-out"
+  />
 
-  {/* Extremely subtle blue atmosphere */}
-  <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-blue-500/[0.015] blur-[180px]" />
+  {/* Neutral ambient light */}
+
+  <div className="absolute left-1/2 top-1/3 h-[550px] w-[550px] -translate-x-1/2 rounded-full bg-white/[0.012] blur-[180px]" />
+
+  {/* Very subtle blue atmosphere */}
+
+  <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-blue-500/[0.025] blur-[160px]" />
 
   {/* Floating energy particles */}
-  <div className="absolute left-[20%] top-[30%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.4] shadow-[0_0_10px_rgba(59,130,246,0.25)]" />
 
-  <div className="absolute left-[70%] top-[25%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.4] shadow-[0_0_10px_rgba(59,130,246,0.25)] [animation-delay:1s]" />
+  <div className="absolute left-[20%] top-[30%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)]" />
 
-  <div className="absolute left-[80%] top-[65%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.4] shadow-[0_0_10px_rgba(59,130,246,0.25)] [animation-delay:2s]" />
+  <div className="absolute left-[70%] top-[25%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:1s]" />
 
-  <div className="absolute left-[35%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.4] shadow-[0_0_10px_rgba(59,130,246,0.25)] [animation-delay:3s]" />
+  <div className="absolute left-[80%] top-[65%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:2s]" />
+
+  <div className="absolute left-[35%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:3s]" />
 </div>
 
 
