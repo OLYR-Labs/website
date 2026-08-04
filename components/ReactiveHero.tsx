@@ -3,76 +3,123 @@
 import { useEffect, useRef } from "react";
 
 export default function ReactiveHero() {
-const containerRef = useRef<HTMLDivElement>(null);
-const glowRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-const container = containerRef.current;
-const glow = glowRef.current;
+  useEffect(() => {
+    const container = containerRef.current;
+    const glow = glowRef.current;
 
+    if (!container || !glow) return;
 
-if (!container || !glow) return;
+    // Disable mouse tracking on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
 
-const handleMouseMove = (event: MouseEvent) => {
-  const rect = container.getBoundingClientRect();
+    let frame = 0;
 
-  const x = event.clientX - rect.left;
-  const y = event.clientY - rect.top;
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
 
-  const percentX = (x / rect.width) * 100;
-  const percentY = (y / rect.height) * 100;
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
-  glow.style.left = `${percentX}%`;
-  glow.style.top = `${percentY}%`;
-};
+      const moveX = x - rect.width / 2;
+      const moveY = y - rect.height / 2;
 
-const handleMouseLeave = () => {
-  glow.style.left = "50%";
-  glow.style.top = "50%";
-};
+      cancelAnimationFrame(frame);
 
-container.addEventListener("mousemove", handleMouseMove);
-container.addEventListener("mouseleave", handleMouseLeave);
+      frame = requestAnimationFrame(() => {
+        glow.style.transform = `
+          translate3d(
+            calc(-50% + ${moveX * 0.08}px),
+            calc(-50% + ${moveY * 0.08}px),
+            0
+          )
+        `;
+      });
+    };
 
-return () => {
-  container.removeEventListener("mousemove", handleMouseMove);
-  container.removeEventListener("mouseleave", handleMouseLeave);
-};
+    const handleMouseLeave = () => {
+      cancelAnimationFrame(frame);
 
+      glow.style.transform =
+        "translate3d(-50%, -50%, 0)";
+    };
 
-}, []);
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
 
-return ( <div
-   ref={containerRef}
-   className="pointer-events-none absolute inset-0 overflow-hidden"
- >
-{/* Very subtle interactive atmosphere */}
+    return () => {
+      cancelAnimationFrame(frame);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
+  return (
+    <div
+      ref={containerRef}
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
+      {/* Interactive glow */}
+      <div
+        ref={glowRef}
+        className="
+          absolute
+          left-1/2
+          top-1/2
+          h-[420px]
+          w-[420px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-blue-500/[0.035]
+          blur-[120px]
+          will-change-transform
+        "
+      />
 
-  <div
-    ref={glowRef}
-    className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.035] blur-[160px] transition-[left,top] duration-1000 ease-out"
-  />
+      {/* Neutral ambient light */}
+      <div
+        className="
+          absolute
+          left-1/2
+          top-1/3
+          h-[450px]
+          w-[450px]
+          -translate-x-1/2
+          rounded-full
+          bg-white/[0.012]
+          blur-[130px]
+          will-change-transform
+        "
+      />
 
-  {/* Neutral ambient light */}
+      {/* Blue atmosphere */}
+      <div
+        className="
+          absolute
+          -right-40
+          top-1/3
+          h-[350px]
+          w-[350px]
+          rounded-full
+          bg-blue-500/[0.025]
+          blur-[120px]
+          will-change-transform
+        "
+      />
 
-  <div className="absolute left-1/2 top-1/3 h-[550px] w-[550px] -translate-x-1/2 rounded-full bg-white/[0.012] blur-[180px]" />
+      {/* Floating particles */}
+      <div className="absolute left-[20%] top-[30%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)]" />
 
-  {/* Very subtle blue atmosphere */}
+      <div className="absolute left-[70%] top-[25%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:1s]" />
 
-  <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-blue-500/[0.025] blur-[160px]" />
+      <div className="absolute left-[80%] top-[65%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:2s]" />
 
-  {/* Floating energy particles */}
-
-  <div className="absolute left-[20%] top-[30%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)]" />
-
-  <div className="absolute left-[70%] top-[25%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:1s]" />
-
-  <div className="absolute left-[80%] top-[65%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:2s]" />
-
-  <div className="absolute left-[35%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:3s]" />
-</div>
-
-
-);
+      <div className="absolute left-[35%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:3s]" />
+    </div>
+  );
 }
