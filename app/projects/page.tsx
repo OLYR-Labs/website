@@ -4,222 +4,360 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 const projects = [
-{
-number: "01",
-category: "Digital Platform",
-title: "OLYR Labs Platform",
-description:
-"The official digital foundation of OLYR Labs, built to showcase our capabilities and connect businesses with modern technology solutions.",
-tags: ["Next.js", "React", "Cloud", "Web"],
-status: "Live",
-},
-{
-number: "02",
-category: "Artificial Intelligence",
-title: "AI Business Assistant",
-description:
-"An AI-powered assistant concept designed to help businesses automate communication, improve workflows, and create smarter customer experiences.",
-tags: ["AI", "Automation", "APIs"],
-status: "Prototype",
-},
-{
-number: "03",
-category: "Software Development",
-title: "Digital Products & Platforms",
-description:
-"Custom software solutions designed to solve operational challenges, improve efficiency, and help businesses scale through technology.",
-tags: ["Software", "Platforms", "Systems"],
-status: "Building",
-},
-{
-number: "04",
-category: "Cloud & Cybersecurity",
-title: "Secure Digital Infrastructure",
-description:
-"Modern infrastructure solutions focused on reliability, scalability, and security for organizations operating in a connected world.",
-tags: ["Cloud", "Security", "Infrastructure"],
-status: "Research",
-},
+  {
+    number: "01",
+    category: "Digital Platform",
+    title: "OLYR Labs Platform",
+    description:
+      "The official digital foundation of OLYR Labs, built to showcase our capabilities and connect businesses with modern technology solutions.",
+    tags: ["Next.js", "React", "Cloud", "Web"],
+    status: "Live",
+    link: "/",
+  },
+
+  {
+    number: "02",
+    category: "Artificial Intelligence",
+    title: "AI Business Assistant",
+    description:
+      "An AI-powered assistant concept designed to help businesses automate communication, improve workflows, and create smarter customer experiences.",
+    tags: ["AI", "Automation", "APIs"],
+    status: "Prototype",
+  },
+
+  {
+    number: "03",
+    category: "Software Development",
+    title: "Digital Products & Platforms",
+    description:
+      "Custom software solutions designed to solve operational challenges, improve efficiency, and help businesses scale through technology.",
+    tags: ["Software", "Platforms", "Systems"],
+    status: "Building",
+  },
+
+  {
+    number: "04",
+    category: "Cloud & Cybersecurity",
+    title: "Secure Digital Infrastructure",
+    description:
+      "Modern infrastructure solutions focused on reliability, scalability, and security for organizations operating in a connected world.",
+    tags: ["Cloud", "Security", "Infrastructure"],
+    status: "Research",
+  },
+
+  {
+    number: "05",
+    category: "Cybersecurity",
+    title: "OLYR SecureScan",
+    description:
+      "An automated security intelligence platform designed to analyze websites, domains, technologies, and vulnerabilities to identify security risks.",
+    tags: ["Cybersecurity", "Security", "Assessment"],
+    status: "Live",
+    link: "/projects/secure-scan",
+  },
 ];
 
+
 export default function ProjectsPage() {
-return ( <main className="min-h-screen overflow-hidden bg-[#050505] text-[#F5F5F5]">
-{/* ========================================================= */}
-{/* HERO */}
-{/* ========================================================= */}
+  return (
+    <main className="min-h-screen overflow-hidden bg-[#050505] text-[#F5F5F5]">
 
 
-  <section className="relative overflow-hidden border-b border-white/10 pt-16 sm:pt-20">
-    <div className="pointer-events-none absolute right-[-10%] top-1/4 h-[350px] w-[350px] rounded-full bg-blue-500/10 blur-[120px] sm:h-[500px] sm:w-[500px] sm:blur-[140px]" />
+      {/* HERO */}
 
-    <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
-      <Reveal>
-        <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:mb-8 sm:text-sm">
-          Our Work
-        </p>
+      <section className="relative overflow-hidden border-b border-white/10 pt-16 sm:pt-20">
 
-        <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
-          Building technology
-          <br />
-          <span className="text-[#A1A1AA]">
-            for what&apos;s next.
-          </span>
-        </h1>
+        <div className="pointer-events-none absolute right-[-10%] top-1/4 h-[350px] w-[350px] rounded-full bg-blue-500/10 blur-[120px] sm:h-[500px] sm:w-[500px] sm:blur-[140px]" />
 
-        <p className="mt-8 max-w-2xl text-base leading-7 text-[#A1A1AA] sm:mt-10 sm:text-xl sm:leading-8">
-          Explore the systems, concepts, and technology initiatives created
-          by OLYR Labs across artificial intelligence, software development,
-          cloud infrastructure, and cybersecurity.
-        </p>
-      </Reveal>
-    </div>
-  </section>
 
-  {/* ========================================================= */}
-  {/* PROJECTS */}
-  {/* ========================================================= */}
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
 
-  <section className="border-b border-white/10 py-24 sm:py-32">
-    <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-      <Reveal>
-        <div className="mb-14 max-w-2xl sm:mb-20">
-          <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:mb-6 sm:text-sm">
-            Selected Work
-          </p>
+          <Reveal>
 
-          <h2 className="text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">
-            Projects, platforms,
-            <br />
-            and technology.
-          </h2>
+            <p className="mb-6 text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:mb-8 sm:text-sm">
+              Our Work
+            </p>
+
+
+            <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
+
+              Building technology
+
+              <br />
+
+              <span className="text-[#A1A1AA]">
+                for what's next.
+              </span>
+
+            </h1>
+
+
+            <p className="mt-8 max-w-2xl text-base leading-7 text-[#A1A1AA] sm:mt-10 sm:text-xl sm:leading-8">
+
+              Explore the systems, concepts, and technology initiatives created
+              by OLYR Labs across artificial intelligence, software development,
+              cloud infrastructure, and cybersecurity.
+
+            </p>
+
+
+          </Reveal>
+
         </div>
-      </Reveal>
 
-      <div className="space-y-px border-y border-white/10">
-        {projects.map((project, index) => (
-          <Reveal key={project.number} delay={index * 120}>
-            <article className="group relative overflow-hidden border-b border-white/10 py-10 transition duration-500 hover:bg-white/[0.03] last:border-b-0 sm:py-16">
-              <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 rounded-full bg-blue-500/10 opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
+      </section>
 
-              <div className="relative grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
-                <div className="lg:col-span-1">
-                  <span className="text-sm text-[#52525B]">
-                    {project.number}
-                  </span>
-                </div>
 
-                <div className="lg:col-span-3">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
-                    {project.category}
-                  </p>
 
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-[#71717A]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-                    {project.status}
-                  </div>
-                </div>
 
-                <div className="lg:col-span-5">
-                  <h3 className="text-2xl font-semibold tracking-[-0.04em] transition duration-300 group-hover:text-blue-400 sm:text-4xl">
-                    {project.title}
-                  </h3>
+      {/* PROJECTS */}
 
-                  <p className="mt-5 max-w-xl text-sm leading-7 text-[#A1A1AA] sm:mt-6 sm:text-base">
-                    {project.description}
-                  </p>
-                </div>
 
-                <div className="flex flex-wrap content-start gap-2 lg:col-span-3 lg:justify-end">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="border border-white/10 px-3 py-2 text-xs text-[#71717A] transition group-hover:border-blue-400/40"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+      <section className="border-b border-white/10 py-24 sm:py-32">
+
+
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+
+          <Reveal>
+
+
+            <div className="mb-14 max-w-2xl sm:mb-20">
+
+
+              <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:mb-6 sm:text-sm">
+                Selected Work
+              </p>
+
+
+              <h2 className="text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">
+
+                Projects, platforms,
+                <br />
+                and technology.
+
+              </h2>
+
+
+            </div>
+
+
+          </Reveal>
+
+
+
+
+
+          <div className="space-y-px border-y border-white/10">
+
+
+            {projects.map((project,index)=>(
+
+
+              <Reveal
+                key={project.number}
+                delay={index * 120}
+              >
+
+
+                <Link
+                  href={project.link || "#"}
+                  className={project.link ? "block cursor-pointer" : "block cursor-default"}
+                >
+
+
+                  <article className="group relative overflow-hidden border-b border-white/10 py-10 transition duration-500 hover:bg-white/[0.03] last:border-b-0 sm:py-16">
+
+
+                    <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 rounded-full bg-blue-500/10 opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
+
+
+
+                    <div className="relative grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
+
+
+
+                      <div className="lg:col-span-1">
+
+                        <span className="text-sm text-[#52525B]">
+                          {project.number}
+                        </span>
+
+                      </div>
+
+
+
+
+
+                      <div className="lg:col-span-3">
+
+
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
+
+                          {project.category}
+
+                        </p>
+
+
+                        <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-[#71717A]">
+
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+
+                          {project.status}
+
+                        </div>
+
+
+                      </div>
+
+
+
+
+
+                      <div className="lg:col-span-5">
+
+
+                        <h3 className="text-2xl font-semibold tracking-[-0.04em] transition duration-300 group-hover:text-blue-400 sm:text-4xl">
+
+                          {project.title}
+
+                        </h3>
+
+
+
+                        <p className="mt-5 max-w-xl text-sm leading-7 text-[#A1A1AA] sm:mt-6 sm:text-base">
+
+                          {project.description}
+
+                        </p>
+
+
+                      </div>
+
+
+
+
+
+                      <div className="flex flex-wrap content-start gap-2 lg:col-span-3 lg:justify-end">
+
+
+                        {project.tags.map((tag)=>(
+
+
+                          <span
+                            key={tag}
+                            className="border border-white/10 px-3 py-2 text-xs text-[#71717A] transition group-hover:border-blue-400/40"
+                          >
+
+                            {tag}
+
+                          </span>
+
+
+                        ))}
+
+
+                      </div>
+
+
+
+                    </div>
+
+
+
+                    <div className="relative mt-8 h-px w-0 bg-blue-400 transition-all duration-500 group-hover:w-24 sm:mt-10" />
+
+
+                  </article>
+
+
+                </Link>
+
+
+              </Reveal>
+
+
+            ))}
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+
+
+
+      {/* CTA */}
+
+      <section className="py-28 sm:py-40">
+
+        <Reveal>
+
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+
+            <div className="grid gap-10 border border-white/10 p-6 sm:gap-12 sm:p-12 lg:grid-cols-2 lg:p-20">
+
+
+              <div>
+
+                <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:text-sm">
+                  Start Building
+                </p>
+
+
+                <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
+
+                  Have a problem worth solving?
+
+                </h2>
+
+
               </div>
 
-              <div className="relative mt-8 h-px w-0 bg-blue-400 transition-all duration-500 group-hover:w-24 sm:mt-10" />
-            </article>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  {/* ========================================================= */}
-  {/* PHILOSOPHY */}
-  {/* ========================================================= */}
 
-  <section className="border-b border-white/10 py-28 sm:py-40">
-    <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:gap-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <Reveal>
-        <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:text-sm">
-          How We Build
-        </p>
-      </Reveal>
 
-      <Reveal delay={150}>
-        <div>
-          <h2 className="text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">
-            Every solution starts with understanding the problem.
-          </h2>
+              <div>
 
-          <p className="mt-7 text-base leading-7 text-[#A1A1AA] sm:mt-8 sm:text-lg sm:leading-8">
-            We believe meaningful technology begins with identifying real
-            challenges, understanding users, and building solutions that
-            create measurable value.
-          </p>
+                <p className="text-base leading-7 text-[#A1A1AA] sm:text-lg sm:leading-8">
 
-          <p className="mt-5 text-base leading-7 text-[#A1A1AA] sm:mt-6 sm:text-lg sm:leading-8">
-            Our work combines artificial intelligence, software engineering,
-            cloud technologies, and security principles to create
-            future-ready solutions.
-          </p>
-        </div>
-      </Reveal>
-    </div>
-  </section>
+                  We help businesses explore, design, and build technology
+                  solutions that move them forward.
 
-  {/* ========================================================= */}
-  {/* CTA */}
-  {/* ========================================================= */}
+                </p>
 
-  <section className="py-28 sm:py-40">
-    <Reveal>
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <div className="grid gap-10 border border-white/10 p-6 sm:gap-12 sm:p-12 lg:grid-cols-2 lg:p-20">
-          <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-blue-400 sm:text-sm">
-              Start Building
-            </p>
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:mt-6 sm:text-5xl">
-              Have a problem worth solving?
-            </h2>
+                <Link
+                  href="/contact"
+                  className="mt-8 inline-flex rounded-full bg-[#F5F5F5] px-8 py-4 text-sm font-semibold text-black transition hover:bg-white sm:mt-10"
+                >
+
+                  Work With Us →
+
+                </Link>
+
+
+              </div>
+
+
+            </div>
+
+
           </div>
 
-          <div>
-            <p className="text-base leading-7 text-[#A1A1AA] sm:text-lg sm:leading-8">
-              We help businesses explore, design, and build technology
-              solutions that move them forward.
-            </p>
 
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex rounded-full bg-[#F5F5F5] px-8 py-4 text-sm font-semibold text-black transition hover:bg-white sm:mt-10"
-            >
-              Work With Us →
-            </Link>
-          </div>
-        </div>
-      </div>
-    </Reveal>
-  </section>
-</main>
+        </Reveal>
 
 
-);
+      </section>
+
+
+    </main>
+  );
 }

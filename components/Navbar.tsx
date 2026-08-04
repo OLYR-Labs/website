@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -9,20 +8,19 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const links = [
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
-    { name: "Insights", href: "/insights" },
-    { name: "SecureScan", href: "/secure-scan" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
     <nav className="fixed inset-x-0 top-0 z-[9999] border-b border-white/[0.10] bg-white/[0.025] shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl backdrop-saturate-150">
-      {/* Soft blue ambient glow */}
+      {/* Ambient Glow */}
       <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-24 w-[500px] -translate-x-1/2 rounded-full bg-blue-500/[0.04] blur-3xl" />
 
-      {/* Bottom glow line */}
+      {/* Bottom Border Glow */}
       <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-blue-400/[0.20] to-transparent" />
 
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -44,7 +42,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation */}
         <div className="hidden items-center gap-10 text-sm text-[#A1A1AA] md:flex">
           {links.map((link) => (
             <Link
@@ -57,15 +55,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* Desktop CTA */}
         <Link
-          href="/contact"
-          className="hidden rounded-full border border-white/[0.15] bg-white/[0.02] px-5 py-2.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition duration-300 hover:border-blue-400/50 hover:bg-white/[0.06] md:block"
+          href="/quote"
+          className="hidden rounded-full border border-blue-400/30 bg-blue-500/10 px-5 py-2.5 text-sm font-medium text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/20 md:block"
         >
-          Let&apos;s Talk
+          Request Quote
         </Link>
 
-        {/* Mobile Button */}
+        {/* Mobile Menu Button */}
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -112,15 +110,14 @@ export default function Navbar() {
           ))}
 
           <Link
-            href="/contact"
+            href="/quote"
             onClick={() => setOpen(false)}
             className="mt-4 block rounded-full bg-[#F5F5F5] px-6 py-3 text-center text-sm font-semibold text-black"
           >
-            Let&apos;s Talk
+            Request Quote
           </Link>
         </div>
       </div>
     </nav>
   );
 }
-

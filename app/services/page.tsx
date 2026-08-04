@@ -6,125 +6,159 @@ import Reveal from "@/components/Reveal";
 const services = [
   {
     number: "01",
-    title: "Cloud Infrastructure",
+    title: "Website Development",
     description:
-      "Build reliable, scalable, and secure cloud infrastructure designed to support modern applications and growing businesses.",
+      "Build modern, high-performance websites that help businesses establish their digital presence, attract customers, and grow online.",
     features: [
-      "Cloud Architecture",
-      "Infrastructure Deployment",
-      "Scalable Systems",
-      "Performance Optimization",
-      "Infrastructure Management",
+      "Business Websites",
+      "Corporate Websites",
+      "Landing Pages",
+      "Premium Web Experiences",
+      "CMS & SEO Integration",
     ],
+    link: "/services/website-development",
   },
 
   {
     number: "02",
-    title: "Cybersecurity",
+    title: "Software Development",
     description:
-      "Strengthen your digital environment with security-focused solutions designed to protect applications, systems, and critical data.",
+      "Create custom software solutions designed around your business processes, challenges, and long-term growth objectives.",
     features: [
-      "Security Assessments",
-      "Application Security",
-      "Security Best Practices",
-      "Risk Analysis",
-      "Security Strategy",
+      "Business Management Systems",
+      "Custom Web Applications",
+      "Internal Tools",
+      "Automation Systems",
+      "API Development",
     ],
+    link: "/services/software-development",
   },
 
   {
     number: "03",
-    title: "Artificial Intelligence",
+    title: "E-Commerce Development",
     description:
-      "Turn emerging AI technologies into practical solutions that improve workflows, automate processes, and create new possibilities.",
+      "Develop powerful online stores that help businesses sell products, manage operations, and deliver better customer experiences.",
     features: [
-      "AI-Powered Applications",
-      "Intelligent Automation",
-      "AI Integrations",
-      "Custom AI Solutions",
-      "AI Strategy & Consulting",
+      "Online Stores",
+      "Inventory Management",
+      "Payment Integration",
+      "Order Management",
+      "Sales Analytics",
     ],
+    link: "/services/ecommerce",
   },
 
   {
     number: "04",
-    title: "Software Development",
+    title: "Mobile Applications",
     description:
-      "Design and build modern software solutions that are reliable, scalable, and tailored to your unique business requirements.",
+      "Build mobile applications that improve customer engagement, streamline workflows, and create new digital experiences.",
     features: [
-      "Web Applications",
-      "Business Software",
-      "Custom Platforms",
-      "APIs & Integrations",
-      "Digital Products",
+      "Business Applications",
+      "Customer Apps",
+      "Employee Applications",
+      "Mobile Platforms",
+      "App Integrations",
     ],
+    link: "/services/mobile-development",
+  },
+
+  {
+    number: "05",
+    title: "Artificial Intelligence",
+    description:
+      "Transform business operations with practical AI solutions that automate processes, improve efficiency, and unlock new possibilities.",
+    features: [
+      "AI Assistants",
+      "Business Automation",
+      "Document Analysis",
+      "AI Integrations",
+      "Custom AI Solutions",
+    ],
+    link: "/services/ai-solutions",
+  },
+
+  {
+    number: "06",
+    title: "Cybersecurity",
+    description:
+      "Protect your digital environment with security solutions designed to identify weaknesses, reduce risks, and strengthen systems.",
+    features: [
+      "Security Assessments",
+      "Vulnerability Reviews",
+      "Application Security",
+      "Risk Analysis",
+      "Security Consulting",
+    ],
+    link: "/services/cybersecurity",
+  },
+
+  {
+    number: "07",
+    title: "Cloud Solutions",
+    description:
+      "Deploy reliable and scalable cloud infrastructure designed to support modern applications and growing businesses.",
+    features: [
+      "Cloud Deployment",
+      "Infrastructure Setup",
+      "Scalable Systems",
+      "Performance Optimization",
+      "Cloud Management",
+    ],
+    link: "/services/cloud-solutions",
   },
 ];
-
 
 const process = [
   {
     number: "01",
     title: "Understand",
     description:
-      "We start by understanding your goals, challenges, and the outcomes you want to achieve.",
+      "We begin by understanding your goals, challenges, and the outcomes you want your technology to achieve.",
   },
 
   {
     number: "02",
     title: "Strategize",
     description:
-      "We identify the right technology and approach for your specific needs.",
+      "We design the right technical approach, selecting solutions that match your requirements and future growth.",
   },
 
   {
     number: "03",
     title: "Build",
     description:
-      "We turn the strategy into a working, tested, and refined technology solution.",
+      "We transform ideas into reliable, secure, and scalable technology solutions through careful development and testing.",
   },
 
   {
     number: "04",
     title: "Evolve",
     description:
-      "We help you improve, scale, and adapt your technology as your needs change.",
+      "We help improve, maintain, and scale your technology as your business continues to grow.",
   },
 ];
 
-
 export default function ServicesPage() {
-
   return (
-
     <main className="min-h-screen bg-[#050505] text-[#F5F5F5]">
-
 
       {/* Hero */}
 
       <section className="relative overflow-hidden border-b border-white/10 pt-20">
 
-
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
-
 
         <div className="absolute left-[-10%] top-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[140px]" />
 
-
-
         <div className="mx-auto max-w-7xl px-6 py-32 lg:px-8 lg:py-40">
-
 
           <Reveal>
 
-
             <p className="mb-8 text-sm font-medium uppercase tracking-[0.25em] text-blue-400">
-
               Our Services
-
             </p>
-
-
 
             <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.04em] sm:text-7xl lg:text-8xl">
 
@@ -133,86 +167,62 @@ export default function ServicesPage() {
               <br />
 
               <span className="text-[#A1A1AA]">
-                for what's next.
+                built for growth.
               </span>
 
             </h1>
 
+            <p className="mt-10 max-w-3xl text-lg leading-8 text-[#A1A1AA] sm:text-xl">
 
-
-            <p className="mt-10 max-w-2xl text-lg leading-8 text-[#A1A1AA] sm:text-xl">
-
-              We help businesses turn ambitious ideas into reliable technology
-              through cloud infrastructure, cybersecurity, artificial
-              intelligence, and software development.
+              We design and build digital solutions that help businesses grow,
+              automate, secure, and scale — from websites and software platforms
+              to artificial intelligence and cybersecurity solutions.
 
             </p>
 
-
           </Reveal>
 
-
         </div>
-
 
       </section>
 
 
 
-
-
-
       {/* Services */}
-
 
       <section className="border-b border-white/10 py-32">
 
-
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
 
           <Reveal>
 
-
             <div className="mb-20 max-w-2xl">
 
-
               <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-400">
-
-                What We Do
-
+                What We Build
               </p>
-
-
 
               <h2 className="mt-6 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
 
-                Technology solutions built around your goals.
+                Technology solutions designed around your business.
 
               </h2>
 
-
             </div>
 
-
           </Reveal>
-
-
 
 
 
           <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
 
 
-
-            {services.map((service,index)=>(
-
+            {services.map((service, index) => (
 
               <Reveal
                 key={service.number}
                 delay={index * 100}
               >
-
 
                 <article
                   className="
@@ -229,31 +239,28 @@ export default function ServicesPage() {
                   "
                 >
 
-
-                  <div className="
-                  pointer-events-none
-                  absolute
-                  right-0
-                  top-0
-                  h-64
-                  w-64
-                  rounded-full
-                  bg-blue-500/10
-                  opacity-0
-                  blur-3xl
-                  transition
-                  duration-500
-                  group-hover:opacity-100
-                  " />
-
+                  <div
+                    className="
+                    pointer-events-none
+                    absolute
+                    right-0
+                    top-0
+                    h-64
+                    w-64
+                    rounded-full
+                    bg-blue-500/10
+                    opacity-0
+                    blur-3xl
+                    transition
+                    duration-500
+                    group-hover:opacity-100
+                    "
+                  />
 
 
                   <span className="text-sm font-medium text-blue-400">
-
                     {service.number}
-
                   </span>
-
 
 
                   <h3 className="mt-16 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
@@ -263,7 +270,6 @@ export default function ServicesPage() {
                   </h3>
 
 
-
                   <p className="mt-6 max-w-lg text-lg leading-8 text-[#A1A1AA]">
 
                     {service.description}
@@ -271,25 +277,16 @@ export default function ServicesPage() {
                   </p>
 
 
-
-
-
                   <div className="mt-10 border-t border-white/10 pt-8">
 
-
                     <p className="text-xs uppercase tracking-[0.2em] text-[#52525B]">
-
                       Capabilities
-
                     </p>
-
-
 
 
                     <ul className="mt-6 space-y-4">
 
-
-                      {service.features.map((feature)=>(
+                      {service.features.map((feature) => (
 
                         <li
                           key={feature}
@@ -304,55 +301,47 @@ export default function ServicesPage() {
 
                       ))}
 
-
                     </ul>
 
 
                   </div>
 
 
+                  <Link
+                    href={service.link}
+                    className="mt-10 inline-flex text-sm font-medium text-blue-400 transition hover:text-blue-300"
+                  >
+                    Explore Service →
+                  </Link>
+
+
                 </article>
 
-
               </Reveal>
-
 
             ))}
 
 
-
           </div>
 
-
         </div>
-
 
       </section>
 
 
 
 
-
-
-
       {/* Process */}
-
 
       <section className="border-b border-white/10 py-32">
 
-
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
 
           <Reveal>
 
-
             <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-400">
-
               How We Work
-
             </p>
-
 
 
             <h2 className="mt-6 max-w-xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
@@ -361,92 +350,62 @@ export default function ServicesPage() {
 
             </h2>
 
-
           </Reveal>
-
-
 
 
 
           <div className="mt-20">
 
-
-            {process.map((item,index)=>(
-
+            {process.map((item, index) => (
 
               <Reveal
                 key={item.number}
-                delay={index*100}
+                delay={index * 100}
               >
-
 
                 <div className="border-t border-white/10 py-10">
 
-
                   <span className="text-sm text-blue-400">
-
                     {item.number}
-
                   </span>
 
 
-
                   <h3 className="mt-4 text-2xl font-semibold">
-
                     {item.title}
-
                   </h3>
 
 
-
                   <p className="mt-4 max-w-xl text-[#A1A1AA]">
-
                     {item.description}
-
                   </p>
-
 
                 </div>
 
-
               </Reveal>
-
 
             ))}
 
-
           </div>
 
-
         </div>
-
 
       </section>
 
 
 
 
-
-
-
       {/* CTA */}
-
 
       <section className="py-40">
 
-
         <Reveal>
-
 
           <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
 
 
             <p className="mb-6 text-sm uppercase tracking-[0.25em] text-blue-400">
-
-              Start a Conversation
-
+              Start a Project
             </p>
-
 
 
             <h2 className="text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">
@@ -456,24 +415,23 @@ export default function ServicesPage() {
             </h2>
 
 
-
             <p className="mx-auto mt-8 max-w-xl text-lg text-[#A1A1AA]">
 
-              Tell us what you're building and let's explore what's possible.
+              Tell us what you are building and we will help find the right
+              technology solution.
 
             </p>
 
 
-
-            <div className="mt-10 flex justify-center gap-4">
+            <div className="mt-10 flex justify-center">
 
 
               <Link
-                href="/contact"
-                className="rounded-full bg-white px-8 py-4 text-sm font-semibold text-black"
+                href="/quote"
+                className="rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition hover:bg-[#e4e4e4]"
               >
 
-                Start a Project →
+                Request a Quote →
 
               </Link>
 
@@ -483,15 +441,11 @@ export default function ServicesPage() {
 
           </div>
 
-
         </Reveal>
-
 
       </section>
 
 
     </main>
-
   );
-
 }

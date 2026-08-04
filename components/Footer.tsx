@@ -5,12 +5,30 @@ export default function Footer() {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
-    { name: "Insights", href: "/insights" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const socials = [
+    {
+      name: "GitHub",
+      href: "https://github.com/OLYR-Labs",
+    },
+    {
+      name: "Instagram",
+      href: "https://instagram.com/olylabs",
+    },
+    {
+      name: "X",
+      href: "https://x@olyrlabs.com",
+    },
+    {
+      name: "TikTok",
+      href: "https://tiktok.com/@olyrlabs",
+    },
   ];
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#050505]">
-
 
       {/* Ambient glow */}
 
@@ -30,19 +48,14 @@ export default function Footer() {
         "
       />
 
-
-
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
 
-
         <div className="grid gap-12 md:grid-cols-4">
-
 
 
           {/* Brand */}
 
           <div className="md:col-span-2">
-
 
             <Link
               href="/"
@@ -61,68 +74,68 @@ export default function Footer() {
                 OLYR
               </span>
 
-              <span className="
-              text-blue-400
-              transition
-              duration-300
-              group-hover:text-blue-300
-              ">
+              <span
+                className="
+                text-blue-400
+                transition
+                duration-300
+                group-hover:text-blue-300
+                "
+              >
                 .
               </span>
 
             </Link>
 
 
-
-            <p className="
-            mt-6
-            max-w-sm
-            text-sm
-            leading-7
-            text-[#71717A]
-            ">
-
+            <p
+              className="
+              mt-6
+              max-w-sm
+              text-sm
+              leading-7
+              text-[#71717A]
+              "
+            >
               Technology for what's next.
               Building intelligent software,
               secure infrastructure, and future-ready
               solutions for a digital world.
-
             </p>
 
 
-
-            <div className="
-            mt-8
-            inline-flex
-            items-center
-            gap-3
-            rounded-full
-            border
-            border-white/10
-            bg-white/[0.03]
-            px-4
-            py-2
-            text-xs
-            text-[#71717A]
-            ">
-
-              <span className="
-              h-2
-              w-2
+            <div
+              className="
+              mt-8
+              inline-flex
+              items-center
+              gap-3
               rounded-full
-              bg-blue-400
-              shadow-[0_0_12px_rgba(96,165,250,0.8)]
-              " />
+              border
+              border-white/10
+              bg-white/[0.03]
+              px-4
+              py-2
+              text-xs
+              text-[#71717A]
+              "
+            >
+
+              <span
+                className="
+                h-2
+                w-2
+                rounded-full
+                bg-blue-400
+                shadow-[0_0_12px_rgba(96,165,250,0.8)]
+                "
+              />
 
               Building the future
 
             </div>
 
-
           </div>
-
-
-
 
 
 
@@ -135,17 +148,19 @@ export default function Footer() {
             </h3>
 
 
-            <div className="
-            mt-6
-            flex
-            flex-col
-            gap-4
-            text-sm
-            text-[#71717A]
-            ">
+            <div
+              className="
+              mt-6
+              flex
+              flex-col
+              gap-4
+              text-sm
+              text-[#71717A]
+              "
+            >
 
+              {links.map((link) => (
 
-              {links.map((link)=>(
                 <Link
                   key={link.name}
                   href={link.href}
@@ -176,16 +191,12 @@ export default function Footer() {
                   />
 
                 </Link>
-              ))}
 
+              ))}
 
             </div>
 
-
           </div>
-
-
-
 
 
 
@@ -194,71 +205,47 @@ export default function Footer() {
 
           <div>
 
-
             <h3 className="text-sm font-semibold text-white">
               Connect
             </h3>
 
 
+            <div
+              className="
+              mt-6
+              flex
+              flex-col
+              gap-4
+              text-sm
+              text-[#71717A]
+              "
+            >
 
-            <div className="
-            mt-6
-            flex
-            flex-col
-            gap-4
-            text-sm
-            text-[#71717A]
-            ">
+              {socials.map((social) => (
 
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                  transition
+                  hover:text-white
+                  "
+                >
 
-              <a
-                href="https://github.com/OLYR-Labs"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                transition
-                hover:text-white
-                "
-              >
-                GitHub
-              </a>
+                  {social.name}
 
+                </a>
 
-
-              <a
-                href="#"
-                className="
-                transition
-                hover:text-white
-                "
-              >
-                Instagram
-              </a>
-
-
-
-              <a
-                href="#"
-                className="
-                transition
-                hover:text-white
-                "
-              >
-                X
-              </a>
-
-
+              ))}
 
             </div>
-
 
           </div>
 
 
-
         </div>
-
-
 
 
 
