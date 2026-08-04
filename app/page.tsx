@@ -55,7 +55,7 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
 
 
   <section className="relative px-4 py-4 sm:px-6 lg:px-8">
-    <div className="glass-panel relative flex min-h-screen items-center rounded-[2rem]">
+  <div className="relative flex min-h-screen items-center rounded-[2rem]">
       {/* Neutral atmospheric lighting */}
 
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.012] blur-[180px]" />
