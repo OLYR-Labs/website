@@ -228,7 +228,7 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
 
       {/* SERVICE CARDS */}
 
-      <div className="grid overflow-hidden rounded-2xl border border-white/[0.08] md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid overflow-hidden md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
           <Reveal key={service.number} delay={index * 80}>
             <Link
