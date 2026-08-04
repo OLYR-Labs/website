@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
-import { analyzeHeaders } from "@/lib/security/headers";
-import { calculateSecurityScore } from "@/lib/security/scoring";
-import { analyzeSSL } from "@/lib/security/ssl";
-import { analyzeDomain } from "@/lib/security/domain";
-import { analyzeTechnology } from "@/lib/security/technology";
-import { analyzeDNS } from "@/lib/security/dns";
+import { analyzeHeaders } from "@/lib/headers";
+import { calculateSecurityScore } from "@/lib/scoring";
+import { analyzeSSL } from "@/lib/ssl";
+import { analyzeDomain } from "@/lib/domain";
+import { analyzeTechnology } from "@/lib/technology";
+import { analyzeDNS } from "@/lib/dns";
 
 
 
