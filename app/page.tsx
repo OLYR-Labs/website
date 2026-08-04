@@ -127,7 +127,7 @@ return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F
             {/* Restrained ambient light */}
 
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.035] blur-[120px] transition duration-1000 group-hover:scale-150 group-hover:bg-blue-500/[0.06]" />
+            <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[90px]" />
 
               {/* Very subtle energy lines */}
 
