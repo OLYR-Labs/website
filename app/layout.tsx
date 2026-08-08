@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -6,21 +7,17 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ReactiveCursor from "@/components/ReactiveCursor";
-
-
+import ScrollDirectionButton from "@/components/ScrollDirectionButton";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
 
-
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "OLYR Labs — Technology for what's next.",
@@ -28,17 +25,13 @@ export const metadata: Metadata = {
     "OLYR Labs builds intelligent software, secure digital infrastructure, and technology solutions that help businesses grow, improve, and stay secure.",
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-
       <body
         className={`
           ${inter.variable}
@@ -48,20 +41,19 @@ export default function RootLayout({
           antialiased
         `}
       >
-
-        
-
         <Navbar />
+
         <ReactiveCursor />
 
         {children}
 
         <WhatsAppButton />
 
+        <ScrollDirectionButton />
+
         <Footer />
-
       </body>
-
     </html>
   );
 }
+
