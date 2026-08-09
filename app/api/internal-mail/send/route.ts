@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { Resend } from "resend";
@@ -5,6 +6,33 @@ import { Resend } from "resend";
 const resend = new Resend(
   process.env.RESEND_API_KEY
 );
+
+const MAX_FILES = 10;
+const MAX_TOTAL_SIZE = 25 * 1024 * 1024;
+
+const BLOCKED_EXTENSIONS = new Set([
+  ".exe",
+  ".dll",
+  ".bat",
+  ".cmd",
+  ".com",
+  ".scr",
+  ".msi",
+  ".vbs",
+  ".vbe",
+  ".js",
+  ".jse",
+  ".ws",
+  ".wsf",
+  ".wsc",
+  ".wsh",
+  ".ps1",
+  ".psm1",
+  ".psd1",
+  ".jar",
+  ".hta",
+  ".cpl",
+]);
 
 function createSessionToken() {
   const secret =
@@ -26,15 +54,14 @@ function isAuthenticated(request: Request) {
   const cookieHeader =
     request.headers.get("cookie") || "";
 
-  const sessionCookie =
-    cookieHeader
-      .split(";")
-      .map((cookie) => cookie.trim())
-      .find((cookie) =>
-        cookie.startsWith(
-          "olyr_internal_mail_session="
-        )
-      );
+  const sessionCookie = cookieHeader
+    .split(";")
+    .map((cookie) => cookie.trim())
+    .find((cookie) =>
+      cookie.startsWith(
+        "olyr_internal_mail_session="
+      )
+    );
 
   if (!sessionCookie) {
     return false;
@@ -68,6 +95,24 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#039;");
 }
 
+function getExtension(filename: string) {
+  const lastDot = filename.lastIndexOf(".");
+
+  if (lastDot === -1) {
+    return "";
+  }
+
+  return filename
+    .slice(lastDot)
+    .toLowerCase();
+}
+
+function sanitizeFilename(filename: string) {
+  return filename
+    .replace(/[^\w.\-() ]/g, "_")
+    .slice(0, 180);
+}
+
 export async function POST(request: Request) {
   try {
     if (!isAuthenticated(request)) {
@@ -81,11 +126,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    const formData =
+      await request.formData();
 
-    const to = body?.to;
-    const subject = body?.subject;
-    const message = body?.message;
+    const to = formData.get("to");
+    const subject =
+      formData.get("subject");
+    const message =
+      formData.get("message");
 
     if (
       typeof to !== "string" ||
@@ -118,11 +166,90 @@ export async function POST(request: Request) {
       );
     }
 
+    const attachmentEntries =
+      formData.getAll("attachments");
+
+    const files = attachmentEntries.filter(
+      (entry): entry is File =>
+        entry instanceof File &&
+        entry.size > 0
+    );
+
+    if (files.length > MAX_FILES) {
+      return NextResponse.json(
+        {
+          error: `A maximum of ${MAX_FILES} attachments is allowed.`,
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    const totalSize = files.reduce(
+      (total, file) =>
+        total + file.size,
+      0
+    );
+
+    if (totalSize > MAX_TOTAL_SIZE) {
+      return NextResponse.json(
+        {
+          error:
+            "Total attachment size cannot exceed 25 MB.",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    for (const file of files) {
+      const extension =
+        getExtension(file.name);
+
+      if (
+        BLOCKED_EXTENSIONS.has(
+          extension
+        )
+      ) {
+        return NextResponse.json(
+          {
+            error: `The file "${file.name}" is not allowed as an email attachment.`,
+          },
+          {
+            status: 400,
+          }
+        );
+      }
+    }
+
+    const attachments = await Promise.all(
+      files.map(async (file) => {
+        const arrayBuffer =
+          await file.arrayBuffer();
+
+        const buffer =
+          Buffer.from(arrayBuffer);
+
+        return {
+          filename: sanitizeFilename(
+            file.name
+          ),
+          content: buffer.toString(
+            "base64"
+          ),
+        };
+      })
+    );
+
     const emailResponse =
       await resend.emails.send({
-        from: "OLYR Labs <hello@olyrlabs.com>",
+        from:
+          "OLYR Labs <hello@olyrlabs.com>",
         to: to.trim(),
         subject: subject.trim(),
+
         html: `
           <div
             style="
@@ -134,9 +261,18 @@ export async function POST(request: Request) {
             "
           >
             ${escapeHtml(message)
-              .replace(/\n/g, "<br />")}
+              .replace(
+                /\n/g,
+                "<br />"
+              )}
           </div>
         `,
+
+        ...(attachments.length > 0
+          ? {
+              attachments,
+            }
+          : {}),
       });
 
     if (emailResponse.error) {
@@ -161,8 +297,11 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: "Email sent successfully.",
+        message:
+          "Email sent successfully.",
         id: emailResponse.data?.id,
+        attachmentCount:
+          attachments.length,
       },
       {
         status: 200,
@@ -185,3 +324,4 @@ export async function POST(request: Request) {
     );
   }
 }
+
