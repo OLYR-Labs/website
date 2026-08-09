@@ -26,6 +26,19 @@ export default function DilshanCard() {
     }).then(setQr);
   }, []);
 
+  const downloadQR = () => {
+    if (!qr) return;
+
+    const link = document.createElement("a");
+
+    link.href = qr;
+    link.download = "DAB-Dilshan-OLYR-Labs-QR.png";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const saveContact = () => {
     const vcard = [
       "BEGIN:VCARD",
@@ -70,24 +83,19 @@ export default function DilshanCard() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070707] text-white overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-white/[0.04] blur-[120px]" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-white/[0.03] blur-[120px]" />
-      </div>
-
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-5 py-10">
+    <main className="min-h-screen bg-[#050505] text-white">
+      <section className="relative z-10 flex min-h-screen items-center justify-center px-5 py-10">
         <div className="w-full max-w-md">
 
-          <div className="rounded-[32px] overflow-hidden border border-white/[0.08] bg-[#101010] shadow-[0_40px_120px_rgba(0,0,0,.6)]">
+          <div className="overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#101010] shadow-[0_40px_120px_rgba(0,0,0,.6)]">
 
             <div className="p-7 sm:p-9">
 
-              <div className="flex justify-center mb-8">
+              <div className="mb-8 flex justify-center">
                 <img
                   src="/olyrlabslogo.png"
                   alt="OLYR Labs"
-                  className="w-24 h-24 object-contain"
+                  className="h-24 w-24 object-contain"
                 />
               </div>
 
@@ -111,7 +119,7 @@ export default function DilshanCard() {
                   href={`https://wa.me/${PHONE}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between rounded-2xl bg-white text-black px-5 py-4 text-sm font-medium transition hover:bg-white/90 hover:-translate-y-0.5"
+                  className="flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-white/90"
                 >
                   <span>WhatsApp</span>
                   <span>→</span>
@@ -129,16 +137,27 @@ export default function DilshanCard() {
                   onClick={async () => {
                     await navigator.clipboard.writeText(EMAIL);
                     setCopied(true);
-                    setTimeout(() => setCopied(false), 1800);
+
+                    setTimeout(
+                      () => setCopied(false),
+                      1800
+                    );
                   }}
-                  className="w-full flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] px-5 py-4 text-sm text-white/70 transition hover:bg-white/[0.07]"
+                  className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] px-5 py-4 text-sm text-white/70 transition hover:bg-white/[0.07]"
                 >
-                  <span>{copied ? "Email copied" : EMAIL}</span>
+                  <span>
+                    {copied
+                      ? "Email copied"
+                      : EMAIL}
+                  </span>
+
                   <span>⧉</span>
                 </button>
 
                 <a
                   href={WEBSITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.035] px-5 py-4 text-sm text-white/70 transition hover:bg-white/[0.07]"
                 >
                   <span>olyrlabs.com</span>
@@ -147,7 +166,7 @@ export default function DilshanCard() {
 
               </div>
 
-              <div className="grid grid-cols-2 gap-3 mt-5">
+              <div className="mt-5 grid grid-cols-2 gap-3">
 
                 <button
                   onClick={saveContact}
@@ -173,7 +192,7 @@ export default function DilshanCard() {
                       <img
                         src={qr}
                         alt="QR code for D.A.B. Dilshan"
-                        className="w-44 h-44"
+                        className="h-44 w-44"
                       />
                     </div>
                   )}
@@ -183,9 +202,18 @@ export default function DilshanCard() {
                   Scan to connect
                 </p>
 
+                <button
+                  onClick={downloadQR}
+                  disabled={!qr}
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-4 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <span>↓</span>
+                  <span>Download QR Code</span>
+                </button>
+
               </div>
 
-              <p className="text-center text-[10px] uppercase tracking-[0.25em] text-white/20 mt-7">
+              <p className="mt-7 text-center text-[10px] uppercase tracking-[0.25em] text-white/20">
                 OLYR Labs
               </p>
 
