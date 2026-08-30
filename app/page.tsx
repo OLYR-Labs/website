@@ -2,362 +2,51 @@
 
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import ReactiveHero from "@/components/ReactiveHero";
-import ProjectShowcase from "@/components/ProjectShowcase";
 
-const services = [
-{
-number: "01",
-title: "Websites",
-tag: "DIGITAL EXPERIENCES",
-},
-{
-number: "02",
-title: "Apps",
-tag: "MOBILE & WEB",
-},
-{
-number: "03",
-title: "Software",
-tag: "DIGITAL PRODUCTS",
-},
-{
-number: "04",
-title: "AI",
-tag: "INTELLIGENT SYSTEMS",
-},
-{
-number: "05",
-title: "Cloud",
-tag: "INFRASTRUCTURE",
-},
-{
-number: "06",
-title: "Cybersecurity",
-tag: "SECURITY",
-},
+const solutions = [
+  { number: "01", title: "Websites", text: "Fast, conversion-focused digital experiences built around your brand." },
+  { number: "02", title: "ERP Systems", text: "Connect finance, inventory, operations, HR and reporting in one system." },
+  { number: "03", title: "POS Systems", text: "Modern point-of-sale workflows for retail, restaurants and growing teams." },
+  { number: "04", title: "Custom Software", text: "Purpose-built platforms that fit the way your business actually works." },
+  { number: "05", title: "AI Solutions", text: "Practical automation and intelligent tools that reduce repetitive work." },
+  { number: "06", title: "Cybersecurity", text: "Security reviews, hardening and protection for the systems you depend on." },
 ];
 
-const buildItems = [
-"WEBSITES",
-"APPS",
-"SOFTWARE",
-"AI SYSTEMS",
-"CLOUD",
-"SECURITY",
+const stats = [
+  ["01", "Strategy", "Understand the business before writing the software."],
+  ["02", "Build", "Design and engineer a solution around real workflows."],
+  ["03", "Scale", "Keep improving as your team, customers and operations grow."],
 ];
 
 export default function Home() {
-return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F5]">
-{/* ========================================================= */}
-{/* HERO */}
-{/* ========================================================= */}
-
-
-  <section className="relative px-4 py-4 sm:px-6 lg:px-8">
-  <div className="relative flex min-h-screen items-center rounded-[2rem]">
-      {/* Neutral atmospheric lighting */}
-
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.012] blur-[180px]" />
-
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-blue-500/[0.018] blur-[180px]" />
-
-      {/* Hero visual layer */}
-
-      <ReactiveHero />
-
-      {/* Hero content */}
-
-      <div className="relative z-50 mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-8">
-        {/* BRAND */}
-
-        <Reveal>
-          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-blue-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400/[0.8] shadow-[0_0_15px_rgba(59,130,246,0.55)]" />
-            OLYR LABS
-          </div>
-        </Reveal>
-
-        {/* HERO TITLE */}
-
-        <Reveal delay={100}>
-          <h1 className="mt-10 max-w-6xl text-6xl font-semibold leading-[0.88] tracking-[-0.06em] sm:text-8xl lg:text-[10rem]">
-            We build
-            <br />
-            <span className="text-[#A1A1AA]">digital.</span>
-          </h1>
-        </Reveal>
-
-        {/* HERO DESCRIPTION */}
-
-        <Reveal delay={200}>
-          <div className="mt-12 flex flex-col justify-between gap-10 border-t border-white/[0.08] pt-8 md:flex-row md:items-end">
-            <p className="max-w-md text-lg leading-7 text-[#A1A1AA]">
-              Websites. Apps. Software. AI.
-              <br />
-              Cloud. Security.
-            </p>
-
-            <Link
-              href="/projects"
-              aria-label="Explore what we build"
-              className="group relative z-50 inline-flex w-fit cursor-pointer items-center gap-4 text-sm font-medium text-white"
-            >
-              <span className="transition-colors duration-300 group-hover:text-blue-400">
-                Explore what we build
-              </span>
-
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.16] bg-white/[0.02] text-base transition-all duration-300 group-hover:translate-x-1 group-hover:border-blue-400/70 group-hover:bg-blue-400 group-hover:text-black">
-                →
-              </span>
-            </Link>
-          </div>
-        </Reveal>
-
-        {/* ===================================================== */}
-        {/* HERO VISUAL */}
-        {/* ===================================================== */}
-
-        <Reveal delay={300}>
-          <div className="group relative mt-24 h-[300px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#050505] sm:h-[420px]">
-            {/* Subtle neutral highlight */}
-
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.025),transparent_30%,transparent_70%,rgba(59,130,246,0.012))]" />
-
-            {/* Restrained ambient light */}
-
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[90px]" />
-
-              {/* Very subtle energy lines */}
-
-              <div className="absolute -left-20 top-1/2 h-px w-[140%] rotate-12 bg-gradient-to-r from-transparent via-blue-400/[0.12] to-transparent animate-[pulse_4s_ease-in-out_infinite]" />
-
-              <div className="absolute -left-20 top-1/2 h-px w-[140%] -rotate-12 bg-gradient-to-r from-transparent via-blue-400/[0.08] to-transparent animate-[pulse_5s_ease-in-out_infinite]" />
-            </div>
-
-            {/* Floating points */}
-
-            <div className="pointer-events-none absolute left-[15%] top-[25%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)]" />
-
-            <div className="pointer-events-none absolute left-[75%] top-[20%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:1s]" />
-
-            <div className="pointer-events-none absolute left-[85%] top-[70%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:2s]" />
-
-            <div className="pointer-events-none absolute left-[25%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:3s]" />
-
-            {/* Center content */}
-
-            <div className="pointer-events-none relative flex h-full items-center justify-center">
-              <div className="relative text-center">
-                <p className="text-xs uppercase tracking-[0.4em] text-[#71717A]">
-                  DIGITAL SYSTEMS
-                </p>
-
-                <p className="mt-5 text-4xl font-semibold tracking-[-0.04em] transition duration-500 group-hover:scale-105 sm:text-6xl">
-                  Built for what&apos;s next.
-                </p>
-
-                <div className="mx-auto mt-8 h-px w-24 bg-gradient-to-r from-transparent via-blue-400/[0.55] to-transparent opacity-60" />
-              </div>
-            </div>
-
-            {/* Subtle hover border */}
-
-            <div className="pointer-events-none absolute inset-0 rounded-3xl border border-transparent transition duration-700 group-hover:border-blue-400/[0.18]" />
-          </div>
-        </Reveal>
-      </div>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* MARQUEE */}
-  {/* ========================================================= */}
-
-  <section className="px-4 py-4 sm:px-6 lg:px-8">
-    <div className="glass-card overflow-hidden rounded-2xl py-6">
-      <div className="flex overflow-hidden whitespace-nowrap">
-        <div className="flex animate-[marquee_20s_linear_infinite] gap-10 text-sm font-medium tracking-[0.2em] text-[#71717A]">
-          {[...buildItems, ...buildItems].map((item, index) => (
-            <div
-              key={`${item}-${index}`}
-              className="flex items-center gap-10"
-            >
-              <span className="text-blue-400/[0.75]">+</span>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* SERVICES */}
-  {/* ========================================================= */}
-
-  <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-    {/* Glass effect removed ONLY from this wrapper */}
-
-    <div className="mx-auto max-w-7xl rounded-[2rem] p-6 sm:p-10 lg:p-12">
-      <Reveal>
-        <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+  return (
+    <main className="overflow-hidden pt-24">
+      <section className="relative mx-auto max-w-[1440px] px-5 pb-20 pt-16 sm:px-8 lg:px-12 lg:pb-28 lg:pt-24">
+        <div className="pointer-events-none absolute -right-40 top-10 h-[520px] w-[520px] rounded-full bg-blue-500/10 blur-[120px]" />
+        <div className="pointer-events-none absolute left-1/3 top-1/2 h-[360px] w-[360px] rounded-full bg-sky-400/5 blur-[110px]" />
+        <div className="relative grid items-end gap-14 lg:grid-cols-[1.15fr_.85fr]">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
-              Capabilities
-            </p>
-
-            <h2 className="mt-6 text-5xl font-semibold tracking-[-0.05em] sm:text-7xl">
-              What we build.
-            </h2>
+            <Reveal><span className="eyebrow">OLYR LABS · DIGITAL ENGINEERING</span></Reveal>
+            <Reveal delay={80}><h1 className="mt-7 max-w-5xl text-[clamp(3.6rem,9vw,8.8rem)] font-semibold leading-[.88] tracking-[-.07em] text-[var(--text-primary)]">Technology that<span className="block text-[var(--blue)]">moves business.</span></h1></Reveal>
+            <Reveal delay={160}><p className="mt-8 max-w-2xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">We design and build premium websites, ERP and POS systems, custom software, AI solutions and cybersecurity platforms for businesses ready to grow.</p></Reveal>
+            <Reveal delay={240}><div className="mt-10 flex flex-wrap gap-3"><Link href="/quote" className="nav-cta min-h-12 px-6 text-sm">Start a project <span aria-hidden="true">↗</span></Link><Link href="/services" className="glass-button inline-flex min-h-12 items-center rounded-full px-6 text-sm font-semibold">Explore solutions <span className="ml-2 text-[var(--blue)]" aria-hidden="true">→</span></Link></div></Reveal>
           </div>
-
-          <Link
-            href="/services"
-            className="group flex items-center gap-3 text-sm text-[#A1A1AA] transition hover:text-white"
-          >
-            View all services
-
-            <span className="transition group-hover:translate-x-1 group-hover:text-blue-400">
-              →
-            </span>
-          </Link>
+          <Reveal delay={220}><div className="relative min-h-[360px] overflow-hidden rounded-[30px] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[var(--shadow-lg)]"><div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(23,105,255,.06)_45%,transparent_75%)]" /><div className="relative flex h-full min-h-[308px] flex-col justify-between"><div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[.18em] text-[var(--text-muted)]"><span>Business systems</span><span>01—06</span></div><div className="space-y-3">{["ERP", "POS", "AI", "SECURITY"].map((item, index) => <div key={item} className="group flex items-center justify-between border-b border-[var(--border)] py-4"><span className="text-2xl font-semibold tracking-[-.04em] transition-transform duration-300 group-hover:translate-x-2">{item}</span><span className="text-sm text-[var(--text-muted)]">0{index + 1}</span></div>)}</div><p className="text-sm leading-6 text-[var(--text-muted)]">One technology partner. From your first idea to the systems that run the business.</p></div></div></Reveal>
         </div>
-      </Reveal>
+      </section>
 
-      {/* SERVICE CARDS */}
+      <section className="border-y border-[var(--border)] bg-[var(--surface)]"><div className="mx-auto flex max-w-[1440px] overflow-hidden px-5 py-5 sm:px-8 lg:px-12"><div className="flex min-w-max animate-marquee items-center gap-10 text-xs font-bold tracking-[.22em] text-[var(--text-muted)]">{["WEBSITES", "ERP SYSTEMS", "POS SYSTEMS", "CUSTOM SOFTWARE", "AI", "CYBERSECURITY", "CLOUD", "AUTOMATION", "WEBSITES", "ERP SYSTEMS", "POS SYSTEMS", "CUSTOM SOFTWARE", "AI", "CYBERSECURITY", "CLOUD", "AUTOMATION"].map((item, index) => <span key={`${item}-${index}`} className="flex items-center gap-10"><i className="h-1.5 w-1.5 rounded-full bg-[var(--blue)]" />{item}</span>)}</div></div></section>
 
-      <div className="grid overflow-hidden md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, index) => (
-          <Reveal key={service.number} delay={index * 80}>
-            <Link
-              href="/services"
-              className="group relative block min-h-[300px] overflow-hidden border-b border-r border-white/[0.08] bg-[#050505] p-8 transition-colors duration-500 hover:bg-[#08090B] sm:p-10"
-            >
-              <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-500/0 blur-[100px] transition-all duration-700 group-hover:bg-blue-500/[0.045]" />
-
-              <div className="relative flex h-full flex-col justify-between">
-                <div className="flex items-start justify-between">
-                  <span className="text-xs text-[#52525B]">
-                    {service.number}
-                  </span>
-
-                  <span className="text-[10px] tracking-[0.2em] text-[#52525B]">
-                    {service.tag}
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-3xl font-semibold tracking-[-0.04em] transition duration-300 group-hover:translate-x-1 group-hover:text-blue-400">
-                    {service.title}
-                  </h3>
-
-                  <div className="mt-6 flex items-center justify-between border-t border-white/[0.08] pt-5">
-                    <span className="text-xs uppercase tracking-[0.2em] text-[#52525B]">
-                      Explore
-                    </span>
-
-                    <span className="transition duration-300 group-hover:translate-x-2 group-hover:text-blue-400">
-                      →
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* PROJECTS */}
-  {/* ========================================================= */}
-
-  <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-    <div className="mx-auto max-w-7xl">
-      <Reveal delay={100}>
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-white/[0.14] bg-white/[0.035] p-[1px] shadow-[0_30px_100px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-blur-2xl">
-          <div className="pointer-events-none absolute -inset-20 bg-blue-500/[0.025] blur-[140px]" />
-
-          <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-[linear-gradient(120deg,rgba(255,255,255,0.06),transparent_25%,transparent_65%,rgba(96,165,250,0.018))]" />
-
-          <div className="relative overflow-hidden rounded-[2.4rem]">
-            <ProjectShowcase />
-          </div>
+      <section className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <Reveal><div className="max-w-3xl"><p className="section-kicker">Solutions</p><h2 className="mt-5 text-5xl font-semibold tracking-[-.06em] sm:text-7xl">The systems behind better businesses.</h2><p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">From the storefront to the back office, we build technology around the problems that actually matter.</p></div></Reveal>
+        <div className="mt-16 divide-y border-y border-[var(--border)]">
+          {solutions.map((solution, index) => <Reveal key={solution.number} delay={index * 45}><Link href="/services" className="group grid gap-5 py-8 transition-all duration-300 sm:grid-cols-[72px_1fr_auto] sm:items-center sm:py-10"><span className="text-xs font-bold tracking-[.18em] text-[var(--blue)]">{solution.number}</span><div><h3 className="text-3xl font-semibold tracking-[-.045em] transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">{solution.title}</h3><p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--text-secondary)]">{solution.text}</p></div><span className="text-xl text-[var(--text-muted)] transition-all duration-300 group-hover:translate-x-2 group-hover:text-[var(--blue)]" aria-hidden="true">↗</span></Link></Reveal>)}
         </div>
-      </Reveal>
-    </div>
-  </section>
+      </section>
 
-  {/* ========================================================= */}
-  {/* STATEMENT */}
-  {/* ========================================================= */}
+      <section className="mx-auto max-w-[1440px] px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32"><div className="grid border-y border-[var(--border)] lg:grid-cols-[.75fr_1.25fr]"><div className="py-10 sm:py-14 lg:py-16"><p className="section-kicker">Why OLYR</p><h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-[-.05em] sm:text-6xl">Built with business in mind.</h2><p className="mt-6 max-w-lg leading-7 text-[var(--text-secondary)]">Good software should feel simple to the people using it, even when the systems underneath are sophisticated.</p></div><div className="divide-y border-t border-[var(--border)] lg:border-l lg:border-t-0">{stats.map(([number, title, text], index) => <Reveal key={number} delay={index * 70}><div className="grid gap-5 py-8 sm:grid-cols-[90px_160px_1fr] sm:items-start sm:py-10"><span className="text-xs font-bold tracking-[.18em] text-[var(--blue)]">{number}</span><h3 className="text-xl font-semibold tracking-[-.03em]">{title}</h3><p className="text-sm leading-6 text-[var(--text-secondary)]">{text}</p></div></Reveal>)}</div></div></section>
 
-  <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-40">
-    <div className="glass-section mx-auto max-w-7xl rounded-[2rem] p-8 sm:p-12 lg:p-20">
-      <Reveal>
-        <p className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-[#F5F5F5] sm:text-7xl lg:text-8xl">
-          We turn ideas into
-          <span className="text-blue-400">
-            {" "}
-            digital reality.
-          </span>
-        </p>
-      </Reveal>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* CTA */}
-  {/* ========================================================= */}
-
-  <section className="px-4 pb-4 sm:px-6 lg:px-8">
-    <div className="glass-panel relative overflow-hidden rounded-[2rem] py-40">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[180px]" />
-
-      <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-8">
-        <Reveal>
-          <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
-            Start something
-          </p>
-        </Reveal>
-
-        <Reveal delay={100}>
-          <h2 className="mt-8 text-5xl font-semibold tracking-[-0.06em] sm:text-7xl lg:text-8xl">
-            Let&apos;s build.
-          </h2>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact"
-              className="group flex items-center gap-4 rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition duration-300 hover:bg-blue-400"
-            >
-              Start a project
-
-              <span className="transition group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-
-            <a
-              href="https://wa.me/94781026353?text=Hi%20OLYR%20Labs!%20I'm%20interested%20in%20working%20with%20you."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-white/20 bg-white/[0.02] px-8 py-4 text-sm font-semibold transition duration-300 hover:border-blue-400/60 hover:bg-blue-400/[0.04]"
-            >
-              Chat on WhatsApp
-            </a>
-          </div>
-        </Reveal>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-);
+      <section className="mx-auto max-w-[1440px] px-5 pb-8 sm:px-8 lg:px-12"><div className="relative overflow-hidden rounded-[32px] bg-[var(--foreground)] px-7 py-20 text-center text-[var(--background)] sm:px-12 lg:py-28"><div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/20 blur-[110px]" /><div className="relative mx-auto max-w-3xl"><p className="text-xs font-bold uppercase tracking-[.2em] text-[var(--blue-light)]">Have a challenge?</p><h2 className="mt-5 text-5xl font-semibold tracking-[-.06em] sm:text-7xl">Let&apos;s build the right system.</h2><p className="mx-auto mt-6 max-w-xl text-base leading-7 opacity-70">Tell us what you are trying to improve. We&apos;ll help turn it into a clear, practical technology plan.</p><Link href="/quote" className="mt-9 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-7 text-sm font-bold text-black shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:bg-[var(--blue)] hover:text-white">Start a conversation <span aria-hidden="true">↗</span></Link></div></div></section>
+    </main>
+  );
 }
