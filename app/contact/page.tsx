@@ -2,7 +2,6 @@
 
 import { FormEvent, useState } from "react";
 import Reveal from "@/components/Reveal";
-import Link from "next/link";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -32,12 +31,8 @@ export default function ContactPage() {
       <section className="mx-auto grid max-w-[1440px] gap-10 px-5 pb-24 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:px-12 lg:pb-32">
         <Reveal>
           <div className="rounded-[28px] border border-[var(--border)] bg-[var(--surface)] p-8 shadow-[var(--shadow-sm)] sm:p-10">
-            <p className="section-kicker">Why talk to us?</p>
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Start with the problem, not the technology.</h2>
-            <p className="mt-5 leading-7 text-[var(--text-secondary)]">We can help scope websites, ERP and POS systems, custom software, AI automation and cybersecurity work without forcing you into a predefined package.</p>
-            <div className="mt-10 space-y-3">
-              {["Web & e-commerce", "ERP & POS", "Custom software & automation", "AI & cybersecurity"].map((item, i) => <div key={item} className="flex items-center gap-3 border-t border-[var(--border)] py-4 text-sm"><span className="text-xs font-bold text-[var(--blue)]">0{i + 1}</span>{item}</div>)}
-            </div>
+            <p className="section-kicker">Why talk to us?</p><h2 className="mt-5 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Start with the problem, not the technology.</h2><p className="mt-5 leading-7 text-[var(--text-secondary)]">We can help scope websites, ERP and POS systems, custom software, AI automation and cybersecurity work without forcing you into a predefined package.</p>
+            <div className="mt-10 space-y-3">{["Web & e-commerce", "ERP & POS", "Custom software & automation", "AI & cybersecurity"].map((item, i) => <div key={item} className="flex items-center gap-3 border-t border-[var(--border)] py-4 text-sm"><span className="text-xs font-bold text-[var(--blue)]">0{i + 1}</span>{item}</div>)}</div>
             <div className="mt-10 border-t border-[var(--border)] pt-7"><p className="text-xs font-bold uppercase tracking-[.16em] text-[var(--text-muted)]">Email</p><a href="mailto:olyrlabs@gmail.com" className="mt-2 inline-block text-lg font-semibold hover:text-[var(--blue)]">olyrlabs@gmail.com</a><p className="mt-7 text-xs font-bold uppercase tracking-[.16em] text-[var(--text-muted)]">Location</p><p className="mt-2 text-lg font-semibold">Sri Lanka</p></div>
           </div>
         </Reveal>
