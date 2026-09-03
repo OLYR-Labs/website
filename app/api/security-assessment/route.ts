@@ -44,7 +44,15 @@ async function readLimitedBody(response: Response) {
   const reader = response.body.getReader();
   const chunks: Uint8Array[] = [];
   let total = 0;
-  try { while (true) { const { done, value } = await reader.read(); if (done) break; total += value.byteLength; if (total > MAX_RESPONSE_BYTES) throw new Error("RESPONSE_TOO_LARGE"); chunks.push(value); } } finally { reader.releaseLock(); }
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > MAX_RESPONSE_BYTES) throw new Error("RESPONSE_TOO_LARGE");
+      chunks.push(value);
+    }
+  } finally { reader.releaseLock(); }
   const merged = new Uint8Array(total);
   let offset = 0;
   for (const chunk of chunks) { merged.set(chunk, offset); offset += chunk.byteLength; }
@@ -72,7 +80,7 @@ export async function POST(request: Request) {
       const html = await readLimitedBody(response);
       const headerAnalysis = analyzeHeaders(response.headers);
       const technologyAnalysis = analyzeTechnology(response.headers, html);
-      const exposureAnalysis = await analyzeExposure(targetUrl, controller.signal, html).catch((error) => ({ findings: [], discoveredUrls: [], scannedUrls: [], error: error instanceof Error ? error.message : "unknown" }));
+      const exposureAnalysis = await analyzeExposure(targetUrl, controller.signal).catch((error) => ({ findings: [], discoveredUrls: [], scannedUrls: [], error: error instanceof Error ? error.message : "unknown" }));
       const httpsScore = targetUrl.protocol === "https:" ? 100 : 40;
       const sslScore = sslAnalysis.valid ? (sslAnalysis.daysRemaining > 30 ? 100 : 70) : 20;
       const technologyScore = technologyAnalysis.technologies.length > 0 ? 90 : 60;
