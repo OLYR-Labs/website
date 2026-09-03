@@ -1,0 +1,27 @@
+name: Supabase Heartbeat
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Supabase heartbeat endpoint
+        env:
+          HEARTBEAT_URL: https://olyrlabs.com/api/health/supabase
+          HEARTBEAT_TOKEN: ${{ secrets.SUPABASE_HEARTBEAT_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          response=$(curl --fail-with-body --silent --show-error \
+            --retry 3 \
+            --retry-delay 5 \
+            --max-time 30 \
+            -H "Authorization: Bearer ${HEARTBEAT_TOKEN}" \
+            "${HEARTBEAT_URL}")
+
+          echo "Supabase heartbeat succeeded: ${response}"
