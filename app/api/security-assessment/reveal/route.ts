@@ -1,0 +1,6 @@
+import { NextResponse } from "next/server";
+import { rateLimit, rateLimitedResponse } from "@/lib/rate-limit";
+import { decryptSecret } from "@/lib/security-scan/exposure";
+import { isDeveloperSessionValid } from "../developer-auth/route";
+
+export async function POST(request:Request){const limit=rateLimit(request,"securescan-secret-reveal",5,10*60*1000);if(!limit.allowed)return rateLimitedResponse(limit.retryAfter);if(!isDeveloperSessionValid(request))return NextResponse.json({error:"Developer verification required."},{status:401,headers:{"Cache-Control":"no-store"}});try{const body=await request.json();const ref=typeof body?.secretRef==="string"?body.secretRef:"";if(!ref||ref.length>4096)return NextResponse.json({error:"Invalid secret reference."},{status:400,headers:{"Cache-Control":"no-store"}});const record=decryptSecret(ref);if(!record)return NextResponse.json({error:"Secret reference expired or invalid."},{status:410,headers:{"Cache-Control":"no-store"}});return NextResponse.json({kind:record.kind,value:record.value,location:record.location,source:record.source,expiresAt:record.expiresAt},{headers:{"Cache-Control":"no-store"}});}catch{return NextResponse.json({error:"Unable to reveal secret."},{status:500,headers:{"Cache-Control":"no-store"}});}}
