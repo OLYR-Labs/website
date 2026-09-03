@@ -1,94 +1,83 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  cleanText,
+  hasOversizedBody,
+  isValidEmail,
+} from "@/lib/input-validation";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
-try {
-const body = await request.json();
-
-
-const name = body.name;
-const email = body.email;
-const company = body.company || "";
-const message = body.message;
-
-if (!name || !email || !message) {
-  return NextResponse.json(
-    {
-      error: "Name, email, and message are required.",
-    },
-    {
-      status: 400,
+  try {
+    if (hasOversizedBody(request)) {
+      return NextResponse.json({ error: "Request is too large." }, { status: 413 });
     }
-  );
-}
 
-if (!process.env.RESEND_API_KEY) {
-  console.error("RESEND_API_KEY is not configured.");
+    const body = await request.json();
+    const name = cleanText(body?.name, 120);
+    const email = cleanText(body?.email, 254).toLowerCase();
+    const company = cleanText(body?.company, 160);
+    const message = cleanText(body?.message, 6000);
 
-  return NextResponse.json(
-    {
-      error: "Email service is not configured.",
-    },
-    {
-      status: 500,
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Name, email, and message are required." },
+        { status: 400 }
+      );
     }
-  );
-}
 
-const result = await resend.emails.send({
-  from: "OLYR Labs <contact@olyrlabs.com>",
-  to: ["olyrlabs@gmail.com"],
-  replyTo: email,
-  subject: `New message from ${name}`,
-  text: [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Company: ${company || "Not provided"}`,
-    "",
-    "Message:",
-    message,
-  ].join("\n"),
-});
-
-if (result.error) {
-  console.error("Resend error:", result.error);
-
-  return NextResponse.json(
-    {
-      error: "Failed to send email.",
-    },
-    {
-      status: 500,
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: "Please provide a valid email address." },
+        { status: 400 }
+      );
     }
-  );
-}
 
-return NextResponse.json(
-  {
-    success: true,
-    message: "Email sent successfully.",
-  },
-  {
-    status: 200,
+    if (message.length < 3) {
+      return NextResponse.json(
+        { error: "Please provide a little more detail." },
+        { status: 400 }
+      );
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not configured.");
+      return NextResponse.json(
+        { error: "Email service is not configured." },
+        { status: 500 }
+      );
+    }
+
+    const result = await resend.emails.send({
+      from: "OLYR Labs <contact@olyrlabs.com>",
+      to: ["olyrlabs@gmail.com"],
+      replyTo: email,
+      subject: `New message from ${name}`,
+      text: [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Company: ${company || "Not provided"}`,
+        "",
+        "Message:",
+        message,
+      ].join("\n"),
+    });
+
+    if (result.error) {
+      console.error("Resend error:", result.error);
+      return NextResponse.json({ error: "Failed to send email." }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Email sent successfully.",
+    });
+  } catch (error) {
+    console.error("Contact API error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong while sending the message." },
+      { status: 500 }
+    );
   }
-);
-
-
-} catch (error) {
-console.error("Contact API error:", error);
-
-
-return NextResponse.json(
-  {
-    error: "Something went wrong while sending the message.",
-  },
-  {
-    status: 500,
-  }
-);
-
-
-}
 }
