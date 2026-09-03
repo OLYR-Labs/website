@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -8,6 +7,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ReactiveCursor from "@/components/ReactiveCursor";
 import ScrollDirectionButton from "@/components/ScrollDirectionButton";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,7 +22,17 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "OLYR Labs — Technology for what's next.",
   description:
-    "OLYR Labs builds intelligent software, secure digital infrastructure, and technology solutions that help businesses grow, improve, and stay secure.",
+    "OLYR Labs builds websites, mobile apps, custom software, ERP and POS systems, AI integrations, cybersecurity solutions, and business automation.",
+  metadataBase: new URL("https://olyrlabs.com"),
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "OLYR Labs — Technology for what's next.",
+    description:
+      "Websites, apps, software, ERP/POS, AI, cybersecurity, and automation built around your business.",
+    url: "https://olyrlabs.com",
+    siteName: "OLYR Labs",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -31,29 +41,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`
-          ${inter.variable}
-          ${spaceGrotesk.variable}
-          bg-[#050505]
-          text-[#F5F5F5]
-          antialiased
-        `}
-      >
-        <Navbar />
-
-        <ReactiveCursor />
-
-        {children}
-
-        <WhatsAppButton />
-
-        <ScrollDirectionButton />
-
-        <Footer />
+    <html lang="en" data-theme="light" suppressHydrationWarning>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+        <ThemeProvider>
+          <Navbar />
+          <ReactiveCursor />
+          {children}
+          <WhatsAppButton />
+          <ScrollDirectionButton />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
-
