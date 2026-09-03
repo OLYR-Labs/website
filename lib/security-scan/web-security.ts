@@ -34,7 +34,6 @@ const securityHeaders = [
 ] as const;
 
 function add(findings: WebSecurityFinding[], finding: WebSecurityFinding) { findings.push(finding); }
-
 function parseCookies(headers: Headers) {
   return (headers.getSetCookie?.() ?? []).map((value) => {
     const parts = value.split(";").map((part) => part.trim());
@@ -44,8 +43,6 @@ function parseCookies(headers: Headers) {
     return { name, secure: lower.includes("; secure"), httpOnly: lower.includes("; httponly"), sameSite };
   });
 }
-
-function hasUnsafeCsp(csp: string) { return /unsafe-inline|unsafe-eval/i.test(csp); }
 
 export function analyzeWebSecurity(url: URL, headers: Headers, html: string, status: number): WebSecurityAnalysis {
   const findings: WebSecurityFinding[] = [];
@@ -62,7 +59,7 @@ export function analyzeWebSecurity(url: URL, headers: Headers, html: string, sta
   }
 
   const csp = headers.get("content-security-policy") || "";
-  if (hasUnsafeCsp(csp)) {
+  if (/unsafe-inline|unsafe-eval/i.test(csp)) {
     score -= 5;
     add(findings, { title: "Weak Content Security Policy", severity: "Medium", category: "Headers", description: "The Content Security Policy permits unsafe script execution directives.", evidence: csp.slice(0, 500), location: url.toString(), confidence: "High", remediation: "Replace unsafe-inline/unsafe-eval with nonces, hashes, or stricter sources.", cwe: "CWE-693" });
   }
@@ -89,55 +86,33 @@ export function analyzeWebSecurity(url: URL, headers: Headers, html: string, sta
 
   const cookies = parseCookies(headers);
   for (const cookie of cookies) {
-    if (url.protocol === "https:" && !cookie.secure) {
-      score -= 5;
-      add(findings, { title: `Cookie missing Secure flag: ${cookie.name}`, severity: "Medium", category: "Cookies", description: "A cookie is set without Secure on an HTTPS site.", evidence: cookie.name, location: url.toString(), confidence: "High", remediation: "Set Secure on cookies transmitted only over HTTPS." });
-    }
-    if (!cookie.httpOnly && /session|auth|token|sid/i.test(cookie.name)) {
-      score -= 8;
-      add(findings, { title: `Sensitive cookie missing HttpOnly: ${cookie.name}`, severity: "High", category: "Cookies", description: "A cookie that appears related to authentication or sessions can be accessed by client-side JavaScript.", evidence: cookie.name, location: url.toString(), confidence: "Medium", remediation: "Set HttpOnly for server-managed authentication/session cookies." });
-    }
-    if (!cookie.sameSite) {
-      score -= 3;
-      add(findings, { title: `Cookie missing SameSite attribute: ${cookie.name}`, severity: "Low", category: "Cookies", description: "The cookie does not explicitly declare a SameSite policy.", evidence: cookie.name, location: url.toString(), confidence: "High", remediation: "Set SameSite=Lax or Strict unless cross-site behavior is intentionally required." });
-    }
+    if (url.protocol === "https:" && !cookie.secure) { score -= 5; add(findings, { title: `Cookie missing Secure flag: ${cookie.name}`, severity: "Medium", category: "Cookies", description: "A cookie is set without Secure on an HTTPS site.", evidence: cookie.name, location: url.toString(), confidence: "High", remediation: "Set Secure on cookies transmitted only over HTTPS." }); }
+    if (!cookie.httpOnly && /session|auth|token|sid/i.test(cookie.name)) { score -= 8; add(findings, { title: `Sensitive cookie missing HttpOnly: ${cookie.name}`, severity: "High", category: "Cookies", description: "A cookie that appears related to authentication or sessions can be accessed by client-side JavaScript.", evidence: cookie.name, location: url.toString(), confidence: "Medium", remediation: "Set HttpOnly for server-managed authentication/session cookies." }); }
+    if (!cookie.sameSite) { score -= 3; add(findings, { title: `Cookie missing SameSite attribute: ${cookie.name}`, severity: "Low", category: "Cookies", description: "The cookie does not explicitly declare a SameSite policy.", evidence: cookie.name, location: url.toString(), confidence: "High", remediation: "Set SameSite=Lax or Strict unless cross-site behavior is intentionally required." }); }
   }
 
   const allowOrigin = headers.get("access-control-allow-origin");
   const allowCredentials = /^true$/i.test(headers.get("access-control-allow-credentials") || "");
   const riskyCors = allowOrigin === "*" || (allowCredentials && !!allowOrigin);
-  if (riskyCors) {
-    score -= allowCredentials && allowOrigin === "*" ? 15 : 7;
-    add(findings, { title: "Potentially permissive CORS policy", severity: allowCredentials && allowOrigin === "*" ? "High" : "Medium", category: "CORS", description: "The response exposes a broad cross-origin policy that may be unsafe for sensitive resources.", evidence: `Access-Control-Allow-Origin: ${allowOrigin}; credentials: ${allowCredentials}`, location: url.toString(), confidence: "Medium", remediation: "Allow only trusted origins and credentials where required." });
-  }
+  if (riskyCors) { score -= allowCredentials && allowOrigin === "*" ? 15 : 7; add(findings, { title: "Potentially permissive CORS policy", severity: allowCredentials && allowOrigin === "*" ? "High" : "Medium", category: "CORS", description: "The response exposes a broad cross-origin policy that may be unsafe for sensitive resources.", evidence: `Access-Control-Allow-Origin: ${allowOrigin}; credentials: ${allowCredentials}`, location: url.toString(), confidence: "Medium", remediation: "Allow only trusted origins and credentials where required." }); }
 
   const methods = (headers.get("allow") || headers.get("access-control-allow-methods") || "").split(",").map((method) => method.trim().toUpperCase()).filter(Boolean);
-  if (methods.includes("TRACE")) {
-    score -= 5;
-    add(findings, { title: "TRACE method advertised", severity: "Medium", category: "HTTP", description: "The target advertises TRACE, which is normally unnecessary for production applications.", evidence: methods.join(", "), location: url.toString(), confidence: "High", remediation: "Disable TRACE unless there is a documented operational need." });
-  }
+  if (methods.includes("TRACE")) { score -= 5; add(findings, { title: "TRACE method advertised", severity: "Medium", category: "HTTP", description: "The target advertises TRACE, which is normally unnecessary for production applications.", evidence: methods.join(", "), location: url.toString(), confidence: "High", remediation: "Disable TRACE unless there is a documented operational need." }); }
 
   const mixedContent: string[] = [];
   if (url.protocol === "https:") {
     const resourcePattern = /(?:src|href|action|poster)\s*=\s*["'](http:\/\/[^"']+)["']/gi;
     let match: RegExpExecArray | null;
     while ((match = resourcePattern.exec(html)) && mixedContent.length < 20) mixedContent.push(match[1]);
-    if (mixedContent.length) {
-      score -= Math.min(10, mixedContent.length * 2);
-      add(findings, { title: "Mixed content detected", severity: "Medium", category: "Configuration", description: "The HTTPS page references resources over unencrypted HTTP.", evidence: mixedContent.slice(0, 5).join(" | "), location: url.toString(), confidence: "High", remediation: "Serve all page resources over HTTPS." });
-    }
+    if (mixedContent.length) { score -= Math.min(10, mixedContent.length * 2); add(findings, { title: "Mixed content detected", severity: "Medium", category: "Configuration", description: "The HTTPS page references resources over unencrypted HTTP.", evidence: mixedContent.slice(0, 5).join(" | "), location: url.toString(), confidence: "High", remediation: "Serve all page resources over HTTPS." }); }
   }
 
   const disclosure: string[] = [];
   if (/stack trace|stacktrace|exception|syntaxerror|referenceerror|fatal error|traceback/i.test(html)) disclosure.push("Possible application error details");
   if (/node_modules\//i.test(html)) disclosure.push("node_modules path reference");
-  if (/\/home\/[^^\s"'<]+/i.test(html)) disclosure.push("Unix home-directory path reference");
+  if (/\/home\/[^\s"'<]+/i.test(html)) disclosure.push("Unix home-directory path reference");
   if (/\b(?:DEBUG|development|devMode)\s*[:=]\s*(?:true|1)\b/i.test(html)) disclosure.push("Possible debug-mode indicator");
-  if (disclosure.length) {
-    score -= 8;
-    add(findings, { title: "Potential information disclosure", severity: "Medium", category: "Information Disclosure", description: "Public response content appears to contain implementation or diagnostic details.", evidence: disclosure.join(" | "), location: url.toString(), confidence: "Medium", remediation: "Disable production diagnostics and remove internal paths and verbose errors from public responses." });
-  }
-
+  if (disclosure.length) { score -= 8; add(findings, { title: "Potential information disclosure", severity: "Medium", category: "Information Disclosure", description: "Public response content appears to contain implementation or diagnostic details.", evidence: disclosure.join(" | "), location: url.toString(), confidence: "Medium", remediation: "Disable production diagnostics and remove internal paths and verbose errors from public responses." }); }
   if (status >= 500) add(findings, { title: "Server error exposed to scanner", severity: "Medium", category: "Information Disclosure", description: "The target returned a server-side error response during the assessment.", evidence: `HTTP ${status}`, location: url.toString(), confidence: "High", remediation: "Review server logs and return a controlled production error response." });
 
   return { score: Math.max(0, Math.min(100, score)), findings, headers: headerValues, cookies, cors: { allowOrigin, allowCredentials, risky: riskyCors }, methods, mixedContent, disclosure };
