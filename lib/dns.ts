@@ -40,9 +40,13 @@ export async function analyzeDNS(domain: string) {
     try { result.records.MX = (await dns.resolveMx(domain)).map((item) => item.exchange); } catch {}
     try { result.records.TXT = (await dns.resolveTxt(domain)).flat(); } catch {}
     try { result.records.NS = await dns.resolveNs(domain); } catch {}
-    try { result.records.CAA = (await dns.resolveCaa(domain)).map((item) => `${item.issue || item.iodef || "CAA"}:${item.value || ""}`); } catch {}
+    try {
+      result.records.CAA = (await dns.resolveCaa(domain)).map((item) => {
+        const value = item.issue ?? item.issuewild ?? item.iodef ?? "";
+        return `${item.issue ? "issue" : item.issuewild ? "issuewild" : "iodef"}:${value}`;
+      });
+    } catch {}
 
-    const txt = result.records.TXT.join(" ");
     const spf = result.records.TXT.find((value) => /^v=spf1\b/i.test(value));
     result.emailSecurity.SPF = !!spf;
     result.emailSecurity.SPFRecord = spf || null;
@@ -52,8 +56,8 @@ export async function analyzeDNS(domain: string) {
     result.emailSecurity.DMARCRecord = result.emailSecurity.DMARC ? dmarc : null;
 
     try {
-      const ds = await dns.resolveSoa(domain);
-      result.emailSecurity.DNSSEC = !!ds;
+      const records = await dns.resolveAny(domain);
+      result.emailSecurity.DNSSEC = records.some((record) => record && typeof record === "object" && "type" in record && record.type === "DS");
     } catch {}
 
     const selectors = ["default", "selector1", "selector2", "google", "k1", "dkim", "mail", "s1", "s2"];
@@ -84,12 +88,12 @@ export async function analyzeDNS(domain: string) {
 
     if (!result.emailSecurity.DKIM && result.records.MX.length > 0) {
       result.score -= 6;
-      result.findings.push({ title: "DKIM could not be confirmed", severity: "Low", description: "Common DKIM selectors did not expose a DKIM public key. This is an indicative check and may miss custom selectors." });
+      result.findings.push({ title: "DKIM could not be confirmed", severity: "Low", description: "Common DKIM selectors did not expose a DKIM public key. This indicative check may miss custom selectors." });
     }
 
     if (!result.emailSecurity.DNSSEC) {
       result.score -= 4;
-      result.findings.push({ title: "DNSSEC could not be confirmed", severity: "Low", description: "SecureScan could not confirm DNSSEC for the target domain." });
+      result.findings.push({ title: "DNSSEC could not be confirmed", severity: "Low", description: "SecureScan could not confirm a DS record for the target domain." });
     }
 
     if (!result.records.CAA.length) {
