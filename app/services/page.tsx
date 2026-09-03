@@ -9,7 +9,7 @@ const services = [
   { title: "Web Apps & Mobile", description: "Useful digital products for customers, teams, and the people behind your business.", features: ["iOS & Android", "Portals & dashboards", "Cross-platform apps"], link: "/services/mobile-development" },
   { title: "ERP & POS Systems", description: "One connected system for sales, inventory, operations, customers, and reporting.", features: ["ERP & management", "POS & sales", "Inventory & reports"], link: "/services/ecommerce" },
   { title: "AI Integration", description: "Practical AI that removes repetitive work and makes your existing systems smarter.", features: ["AI assistants", "Document & data AI", "Workflow automation"], link: "/services/ai-solutions" },
-  { title: "Cybersecurity", description: "Security assessments and engineering that help you understand and reduce risk.", features: ["Security reviews", "Vulnerability testing", "Hardening & guidance"], link: "/services/cybersecurity" },
+  { title: "Cybersecurity", description: "Security assessments and engineering that help you understand and reduce risk.", features: ["Security reviews", "Vulnerability testing", "SecureScan"], link: "/secure-scan" },
   { title: "Business Automation", description: "Connect the tools you use and automate the work you should not have to repeat.", features: ["Workflow automation", "System integrations", "Notifications & tasks"], link: "/services/cloud-solutions" },
 ];
 
