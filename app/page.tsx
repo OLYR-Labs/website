@@ -14,64 +14,9 @@ const solutions = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
-      <section className="relative flex min-h-[88vh] items-center overflow-hidden pt-24">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.10] blur-[150px]" />
-        <div className="pointer-events-none absolute left-[15%] top-[25%] h-40 w-40 rounded-full bg-cyan-400/[0.05] blur-[90px]" />
-        <div className="relative mx-auto w-full max-w-7xl px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
-          <Reveal>
-            <div className="mx-auto max-w-5xl text-center">
-              <p className="mb-7 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">OLYR Labs · Technology Studio</p>
-              <h1 className="font-[var(--font-space-grotesk)] text-[clamp(3.4rem,9vw,8.2rem)] font-semibold leading-[0.9] tracking-[-0.075em]">Technology built<br /><span className="text-[var(--muted)]">around your business.</span></h1>
-              <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">Websites, apps, software, ERP/POS, AI, cybersecurity, and automation — built to work for your business.</p>
-              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link href="/quote" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--text)] px-7 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote <span className="ml-3">→</span></Link>
-                <Link href="#solutions" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-7 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-[var(--accent)]">Explore solutions</Link>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="solutions" className="relative overflow-hidden border-y border-[var(--border)] py-24 sm:py-32">
-        <div className="pointer-events-none absolute -right-48 top-1/3 h-96 w-96 rounded-full bg-blue-500/[0.07] blur-[130px]" />
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="mb-14 max-w-3xl sm:mb-18">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">What we build</p>
-              <h2 className="mt-4 font-[var(--font-space-grotesk)] text-4xl font-semibold leading-[1] tracking-[-0.06em] sm:text-6xl">The technology your business needs.</h2>
-            </div>
-          </Reveal>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {solutions.map((solution, index) => (
-              <Reveal key={solution.title} delay={index * 70}>
-                <article className="group relative h-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.10)] transition duration-500 hover:-translate-y-1 hover:border-blue-400/40 sm:p-8">
-                  <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-500/[0.12] blur-3xl transition duration-700 group-hover:scale-150 group-hover:bg-blue-500/[0.18]" />
-                  <div className="relative">
-                    <div className="mb-12 h-10 w-10 rounded-2xl bg-gradient-to-br from-blue-400/25 to-cyan-300/5 ring-1 ring-blue-300/20" />
-                    <h3 className="font-[var(--font-space-grotesk)] text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{solution.title}</h3>
-                    <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{solution.summary}</p>
-                    <div className="mt-7 flex flex-wrap gap-2">{solution.includes.map((item) => <span key={item} className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs text-[var(--muted)]">{item}</span>)}</div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 sm:py-32">
-        <Reveal>
-          <div className="mx-auto max-w-5xl px-5 text-center sm:px-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Start a conversation</p>
-            <h2 className="mt-4 font-[var(--font-space-grotesk)] text-5xl font-semibold tracking-[-0.07em] sm:text-7xl">Have something to build?</h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">Tell us what you need. We&apos;ll help you work out the right technology, scope, and next step.</p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/quote" className="rounded-full bg-[var(--text)] px-7 py-3.5 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote →</Link>
-              <a href="tel:+94781026353" aria-label="Call OLYR Labs" className="rounded-full border border-[var(--border)] px-7 py-3.5 text-sm font-semibold transition hover:border-[var(--accent)]">Call</a>
-            </div>
-          </div>
-        </Reveal>
-      </section>
+      <section className="relative flex min-h-[88vh] items-center overflow-hidden pt-24"><div className="pointer-events-none absolute left-1/2 top-1/2 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.10] blur-[150px]" /><div className="pointer-events-none absolute left-[15%] top-[25%] h-40 w-40 rounded-full bg-cyan-400/[0.05] blur-[90px]" /><div className="relative mx-auto w-full max-w-7xl px-5 py-24 sm:px-6 lg:px-8 lg:py-32"><Reveal><div className="mx-auto max-w-5xl text-center"><p className="mb-7 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">OLYR Labs · Technology Studio</p><h1 className="font-[var(--font-space-grotesk)] text-[clamp(3.4rem,9vw,8.2rem)] font-semibold leading-[0.9] tracking-[-0.075em]">Technology built<br /><span className="text-[var(--muted)]">around your business.</span></h1><p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">Websites, apps, software, ERP/POS, AI, cybersecurity, and automation — built to work for your business.</p><div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"><Link href="/quote" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--text)] px-7 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote <span className="ml-3">→</span></Link><Link href="#solutions" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-7 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-[var(--accent)]">Explore solutions</Link></div></div></Reveal></div></section>
+      <section id="solutions" className="relative overflow-hidden border-y border-[var(--border)] py-24 sm:py-32"><div className="pointer-events-none absolute -right-48 top-1/3 h-96 w-96 rounded-full bg-blue-500/[0.07] blur-[130px]" /><div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8"><Reveal><div className="mb-14 max-w-3xl"><p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">What we build</p><h2 className="mt-4 font-[var(--font-space-grotesk)] text-4xl font-semibold leading-[1] tracking-[-0.06em] sm:text-6xl">The technology your business needs.</h2></div></Reveal><div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">{solutions.map((solution,index)=><Reveal key={solution.title} delay={index*70} className={index===6 ? "xl:col-span-2" : undefined}><article className="group relative h-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.10)] transition duration-500 hover:-translate-y-1 hover:border-blue-400/40 sm:p-8"><div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-500/[0.12] blur-3xl transition duration-700 group-hover:scale-150 group-hover:bg-blue-500/[0.18]" /><div className="relative"><div className="mb-12 h-10 w-10 rounded-2xl bg-gradient-to-br from-blue-400/25 to-cyan-300/5 ring-1 ring-blue-300/20" /><h3 className="font-[var(--font-space-grotesk)] text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{solution.title}</h3><p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">{solution.summary}</p><div className="mt-7 flex flex-wrap gap-2">{solution.includes.map(item=><span key={item} className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs text-[var(--muted)]">{item}</span>)}</div></div></article></Reveal>)}</div></div></section>
+      <section className="py-24 sm:py-36"><Reveal><div className="mx-auto max-w-5xl px-5 text-center sm:px-6"><p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Start a conversation</p><h2 className="mt-4 font-[var(--font-space-grotesk)] text-5xl font-semibold tracking-[-0.07em] sm:text-7xl">Have something to build?</h2><p className="mx-auto mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">Tell us what you need. We&apos;ll help you work out the right technology, scope, and next step.</p><div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"><Link href="/quote" className="rounded-full bg-[var(--text)] px-7 py-3.5 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote →</Link><a href="tel:+94781026353" aria-label="Call OLYR Labs" className="rounded-full border border-[var(--border)] px-7 py-3.5 text-sm font-semibold transition hover:border-[var(--accent)]">Call</a></div></div></Reveal></section>
     </main>
   );
 }
