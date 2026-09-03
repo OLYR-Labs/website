@@ -14,48 +14,9 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
-      <section className="relative overflow-hidden pt-28 sm:pt-36">
-        <div className="pointer-events-none absolute right-[-10%] top-1/4 h-96 w-96 rounded-full bg-blue-500/[0.10] blur-[140px]" />
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Solutions</p>
-            <h1 className="mt-5 max-w-4xl font-[var(--font-space-grotesk)] text-5xl font-semibold leading-[0.95] tracking-[-0.07em] sm:text-7xl lg:text-8xl">Technology that<br /><span className="text-[var(--muted)]">does the work.</span></h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">From your website to the systems running behind it, we build technology around the way your business works.</p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="border-y border-[var(--border)] py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {services.map((service, index) => (
-              <Reveal key={service.title} delay={index * 70}>
-                <Link href={service.link} className="group relative block h-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-7 transition duration-500 hover:-translate-y-1 hover:border-blue-400/40 sm:p-8">
-                  <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-blue-500/[0.10] blur-3xl transition duration-700 group-hover:scale-150" />
-                  <div className="relative flex h-full flex-col">
-                    <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-blue-400/25 to-cyan-300/5 ring-1 ring-blue-300/20" />
-                    <h2 className="mt-12 font-[var(--font-space-grotesk)] text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{service.title}</h2>
-                    <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{service.description}</p>
-                    <div className="mt-auto pt-7"><div className="flex flex-wrap gap-2">{service.features.map((feature) => <span key={feature} className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs text-[var(--muted)]">{feature}</span>)}</div><span className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)] transition group-hover:translate-x-1">Explore →</span></div>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 sm:py-32">
-        <Reveal>
-          <div className="mx-auto max-w-4xl px-5 text-center sm:px-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Start a project</p>
-            <h2 className="mt-4 font-[var(--font-space-grotesk)] text-5xl font-semibold tracking-[-0.07em] sm:text-6xl">Let&apos;s build it.</h2>
-            <Link href="/quote" className="mt-8 inline-flex rounded-full bg-[var(--text)] px-7 py-3.5 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote →</Link>
-          </div>
-        </Reveal>
-      </section>
-    </main>
-  );
+  return <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+    <section className="relative overflow-hidden pt-28 sm:pt-36"><div className="pointer-events-none absolute right-[-10%] top-1/4 h-96 w-96 rounded-full bg-blue-500/[0.10] blur-[140px]" /><div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28"><Reveal><p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Solutions</p><h1 className="mt-5 max-w-4xl font-[var(--font-space-grotesk)] text-5xl font-semibold leading-[0.95] tracking-[-0.07em] sm:text-7xl lg:text-8xl">Technology that<br /><span className="text-[var(--muted)]">does the work.</span></h1><p className="mt-7 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">From your website to the systems running behind it, we build technology around the way your business works.</p></Reveal></div></section>
+    <section className="border-y border-[var(--border)] py-20 sm:py-28"><div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8"><div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">{services.map((service,index)=><Reveal key={service.title} delay={index*70} className={index===6 ? "xl:col-span-2" : undefined}><Link href={service.link} className="group relative block h-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-7 transition duration-500 hover:-translate-y-1 hover:border-blue-400/40 sm:p-8"><div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-blue-500/[0.10] blur-3xl transition duration-700 group-hover:scale-150" /><div className="relative flex h-full flex-col"><div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-blue-400/25 to-cyan-300/5 ring-1 ring-blue-300/20" /><h2 className="mt-12 font-[var(--font-space-grotesk)] text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{service.title}</h2><p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">{service.description}</p><div className="mt-auto pt-7"><div className="flex flex-wrap gap-2">{service.features.map(feature=><span key={feature} className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs text-[var(--muted)]">{feature}</span>)}</div><span className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)] transition group-hover:translate-x-1">Explore →</span></div></div></Link></Reveal>)}</div></div></section>
+    <section className="py-24 sm:py-32"><Reveal><div className="mx-auto max-w-4xl px-5 text-center sm:px-6"><p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Start a project</p><h2 className="mt-4 font-[var(--font-space-grotesk)] text-5xl font-semibold tracking-[-0.07em] sm:text-6xl">Let&apos;s build it.</h2><Link href="/quote" className="mt-8 inline-flex rounded-full bg-[var(--text)] px-7 py-3.5 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote →</Link></div></Reveal></section>
+  </main>;
 }
