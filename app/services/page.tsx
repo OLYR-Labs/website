@@ -4,448 +4,58 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 const services = [
-  {
-    number: "01",
-    title: "Website Development",
-    description:
-      "Build modern, high-performance websites that help businesses establish their digital presence, attract customers, and grow online.",
-    features: [
-      "Business Websites",
-      "Corporate Websites",
-      "Landing Pages",
-      "Premium Web Experiences",
-      "CMS & SEO Integration",
-    ],
-    link: "/services/website-development",
-  },
-
-  {
-    number: "02",
-    title: "Software Development",
-    description:
-      "Create custom software solutions designed around your business processes, challenges, and long-term growth objectives.",
-    features: [
-      "Business Management Systems",
-      "Custom Web Applications",
-      "Internal Tools",
-      "Automation Systems",
-      "API Development",
-    ],
-    link: "/services/software-development",
-  },
-
-  {
-    number: "03",
-    title: "E-Commerce Development",
-    description:
-      "Develop powerful online stores that help businesses sell products, manage operations, and deliver better customer experiences.",
-    features: [
-      "Online Stores",
-      "Inventory Management",
-      "Payment Integration",
-      "Order Management",
-      "Sales Analytics",
-    ],
-    link: "/services/ecommerce",
-  },
-
-  {
-    number: "04",
-    title: "Mobile Applications",
-    description:
-      "Build mobile applications that improve customer engagement, streamline workflows, and create new digital experiences.",
-    features: [
-      "Business Applications",
-      "Customer Apps",
-      "Employee Applications",
-      "Mobile Platforms",
-      "App Integrations",
-    ],
-    link: "/services/mobile-development",
-  },
-
-  {
-    number: "05",
-    title: "Artificial Intelligence",
-    description:
-      "Transform business operations with practical AI solutions that automate processes, improve efficiency, and unlock new possibilities.",
-    features: [
-      "AI Assistants",
-      "Business Automation",
-      "Document Analysis",
-      "AI Integrations",
-      "Custom AI Solutions",
-    ],
-    link: "/services/ai-solutions",
-  },
-
-  {
-    number: "06",
-    title: "Cybersecurity",
-    description:
-      "Protect your digital environment with security solutions designed to identify weaknesses, reduce risks, and strengthen systems.",
-    features: [
-      "Security Assessments",
-      "Vulnerability Reviews",
-      "Application Security",
-      "Risk Analysis",
-      "Security Consulting",
-    ],
-    link: "/services/cybersecurity",
-  },
-
-  {
-    number: "07",
-    title: "Cloud Solutions",
-    description:
-      "Deploy reliable and scalable cloud infrastructure designed to support modern applications and growing businesses.",
-    features: [
-      "Cloud Deployment",
-      "Infrastructure Setup",
-      "Scalable Systems",
-      "Performance Optimization",
-      "Cloud Management",
-    ],
-    link: "/services/cloud-solutions",
-  },
-];
-
-const process = [
-  {
-    number: "01",
-    title: "Understand",
-    description:
-      "We begin by understanding your goals, challenges, and the outcomes you want your technology to achieve.",
-  },
-
-  {
-    number: "02",
-    title: "Strategize",
-    description:
-      "We design the right technical approach, selecting solutions that match your requirements and future growth.",
-  },
-
-  {
-    number: "03",
-    title: "Build",
-    description:
-      "We transform ideas into reliable, secure, and scalable technology solutions through careful development and testing.",
-  },
-
-  {
-    number: "04",
-    title: "Evolve",
-    description:
-      "We help improve, maintain, and scale your technology as your business continues to grow.",
-  },
+  { title: "Website Development", description: "Premium websites that are fast, responsive, and built around your brand.", features: ["Business & corporate sites", "E-commerce", "CMS, SEO & analytics"], link: "/services/website-development" },
+  { title: "Software Development", description: "Custom software for the processes that off-the-shelf tools cannot handle.", features: ["Business systems", "Web applications", "APIs & integrations"], link: "/services/software-development" },
+  { title: "Web Apps & Mobile", description: "Useful digital products for customers, teams, and the people behind your business.", features: ["iOS & Android", "Portals & dashboards", "Cross-platform apps"], link: "/services/mobile-development" },
+  { title: "ERP & POS Systems", description: "One connected system for sales, inventory, operations, customers, and reporting.", features: ["ERP & management", "POS & sales", "Inventory & reports"], link: "/services/ecommerce" },
+  { title: "AI Integration", description: "Practical AI that removes repetitive work and makes your existing systems smarter.", features: ["AI assistants", "Document & data AI", "Workflow automation"], link: "/services/ai-solutions" },
+  { title: "Cybersecurity", description: "Security assessments and engineering that help you understand and reduce risk.", features: ["Security reviews", "Vulnerability testing", "Hardening & guidance"], link: "/services/cybersecurity" },
+  { title: "Business Automation", description: "Connect the tools you use and automate the work you should not have to repeat.", features: ["Workflow automation", "System integrations", "Notifications & tasks"], link: "/services/cloud-solutions" },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-[#050505] text-[#F5F5F5]">
-
-      {/* Hero */}
-
-      <section className="relative overflow-hidden border-b border-white/10 pt-20">
-
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
-
-        <div className="absolute left-[-10%] top-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[140px]" />
-
-        <div className="mx-auto max-w-7xl px-6 py-32 lg:px-8 lg:py-40">
-
+    <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+      <section className="relative overflow-hidden pt-28 sm:pt-36">
+        <div className="pointer-events-none absolute right-[-10%] top-1/4 h-96 w-96 rounded-full bg-blue-500/[0.10] blur-[140px]" />
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
           <Reveal>
-
-            <p className="mb-8 text-sm font-medium uppercase tracking-[0.25em] text-blue-400">
-              Our Services
-            </p>
-
-            <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.04em] sm:text-7xl lg:text-8xl">
-
-              Technology
-
-              <br />
-
-              <span className="text-[#A1A1AA]">
-                built for growth.
-              </span>
-
-            </h1>
-
-            <p className="mt-10 max-w-3xl text-lg leading-8 text-[#A1A1AA] sm:text-xl">
-
-              We design and build digital solutions that help businesses grow,
-              automate, secure, and scale — from websites and software platforms
-              to artificial intelligence and cybersecurity solutions.
-
-            </p>
-
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Solutions</p>
+            <h1 className="mt-5 max-w-4xl font-[var(--font-space-grotesk)] text-5xl font-semibold leading-[0.95] tracking-[-0.07em] sm:text-7xl lg:text-8xl">Technology that<br /><span className="text-[var(--muted)]">does the work.</span></h1>
+            <p className="mt-7 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">From your website to the systems running behind it, we build technology around the way your business works.</p>
           </Reveal>
-
         </div>
-
       </section>
 
-
-
-      {/* Services */}
-
-      <section className="border-b border-white/10 py-32">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-          <Reveal>
-
-            <div className="mb-20 max-w-2xl">
-
-              <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-400">
-                What We Build
-              </p>
-
-              <h2 className="mt-6 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
-
-                Technology solutions designed around your business.
-
-              </h2>
-
-            </div>
-
-          </Reveal>
-
-
-
-          <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
-
-
+      <section className="border-y border-[var(--border)] py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
-
-              <Reveal
-                key={service.number}
-                delay={index * 100}
-              >
-
-                <article
-                  className="
-                  group
-                  relative
-                  overflow-hidden
-                  bg-[#050505]
-                  p-8
-                  transition
-                  duration-500
-                  hover:bg-white/[0.03]
-                  sm:p-10
-                  lg:p-12
-                  "
-                >
-
-                  <div
-                    className="
-                    pointer-events-none
-                    absolute
-                    right-0
-                    top-0
-                    h-64
-                    w-64
-                    rounded-full
-                    bg-blue-500/10
-                    opacity-0
-                    blur-3xl
-                    transition
-                    duration-500
-                    group-hover:opacity-100
-                    "
-                  />
-
-
-                  <span className="text-sm font-medium text-blue-400">
-                    {service.number}
-                  </span>
-
-
-                  <h3 className="mt-16 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
-
-                    {service.title}
-
-                  </h3>
-
-
-                  <p className="mt-6 max-w-lg text-lg leading-8 text-[#A1A1AA]">
-
-                    {service.description}
-
-                  </p>
-
-
-                  <div className="mt-10 border-t border-white/10 pt-8">
-
-                    <p className="text-xs uppercase tracking-[0.2em] text-[#52525B]">
-                      Capabilities
-                    </p>
-
-
-                    <ul className="mt-6 space-y-4">
-
-                      {service.features.map((feature) => (
-
-                        <li
-                          key={feature}
-                          className="flex items-center gap-3 text-sm text-[#A1A1AA]"
-                        >
-
-                          <span className="h-1 w-1 rounded-full bg-blue-400" />
-
-                          {feature}
-
-                        </li>
-
-                      ))}
-
-                    </ul>
-
-
+              <Reveal key={service.title} delay={index * 70}>
+                <Link href={service.link} className="group relative block h-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-7 transition duration-500 hover:-translate-y-1 hover:border-blue-400/40 sm:p-8">
+                  <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-blue-500/[0.10] blur-3xl transition duration-700 group-hover:scale-150" />
+                  <div className="relative flex h-full flex-col">
+                    <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-blue-400/25 to-cyan-300/5 ring-1 ring-blue-300/20" />
+                    <h2 className="mt-12 font-[var(--font-space-grotesk)] text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{service.title}</h2>
+                    <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{service.description}</p>
+                    <div className="mt-auto pt-7"><div className="flex flex-wrap gap-2">{service.features.map((feature) => <span key={feature} className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1.5 text-xs text-[var(--muted)]">{feature}</span>)}</div><span className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)] transition group-hover:translate-x-1">Explore →</span></div>
                   </div>
-
-
-                  <Link
-                    href={service.link}
-                    className="mt-10 inline-flex text-sm font-medium text-blue-400 transition hover:text-blue-300"
-                  >
-                    Explore Service →
-                  </Link>
-
-
-                </article>
-
+                </Link>
               </Reveal>
-
             ))}
-
-
           </div>
-
         </div>
-
       </section>
 
-
-
-
-      {/* Process */}
-
-      <section className="border-b border-white/10 py-32">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-          <Reveal>
-
-            <p className="text-sm font-medium uppercase tracking-[0.25em] text-blue-400">
-              How We Work
-            </p>
-
-
-            <h2 className="mt-6 max-w-xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
-
-              From idea to implementation.
-
-            </h2>
-
-          </Reveal>
-
-
-
-          <div className="mt-20">
-
-            {process.map((item, index) => (
-
-              <Reveal
-                key={item.number}
-                delay={index * 100}
-              >
-
-                <div className="border-t border-white/10 py-10">
-
-                  <span className="text-sm text-blue-400">
-                    {item.number}
-                  </span>
-
-
-                  <h3 className="mt-4 text-2xl font-semibold">
-                    {item.title}
-                  </h3>
-
-
-                  <p className="mt-4 max-w-xl text-[#A1A1AA]">
-                    {item.description}
-                  </p>
-
-                </div>
-
-              </Reveal>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-
-      {/* CTA */}
-
-      <section className="py-40">
-
+      <section className="py-24 sm:py-32">
         <Reveal>
-
-          <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-
-
-            <p className="mb-6 text-sm uppercase tracking-[0.25em] text-blue-400">
-              Start a Project
-            </p>
-
-
-            <h2 className="text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">
-
-              Have a technology challenge?
-
-            </h2>
-
-
-            <p className="mx-auto mt-8 max-w-xl text-lg text-[#A1A1AA]">
-
-              Tell us what you are building and we will help find the right
-              technology solution.
-
-            </p>
-
-
-            <div className="mt-10 flex justify-center">
-
-
-              <Link
-                href="/quote"
-                className="rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition hover:bg-[#e4e4e4]"
-              >
-
-                Request a Quote →
-
-              </Link>
-
-
-            </div>
-
-
+          <div className="mx-auto max-w-4xl px-5 text-center sm:px-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">Start a project</p>
+            <h2 className="mt-4 font-[var(--font-space-grotesk)] text-5xl font-semibold tracking-[-0.07em] sm:text-6xl">Let&apos;s build it.</h2>
+            <Link href="/quote" className="mt-8 inline-flex rounded-full bg-[var(--text)] px-7 py-3.5 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote →</Link>
           </div>
-
         </Reveal>
-
       </section>
-
-
     </main>
   );
 }
