@@ -6,10 +6,11 @@ import { analyzeSSL } from "@/lib/ssl";
 import { analyzeDomain } from "@/lib/domain";
 import { analyzeTechnology } from "@/lib/technology";
 import { analyzeDNS } from "@/lib/dns";
+import { analyzeExposure } from "@/lib/security-scan/exposure";
 
 const MAX_URL_LENGTH = 2048;
 const MAX_RESPONSE_BYTES = 2_000_000;
-const REQUEST_TIMEOUT_MS = 8_000;
+const REQUEST_TIMEOUT_MS = 12_000;
 const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
@@ -79,16 +80,17 @@ export async function POST(request: Request) {
       const html = await readLimitedBody(response);
       const headerAnalysis = analyzeHeaders(response.headers);
       const technologyAnalysis = analyzeTechnology(response.headers, html);
+      const exposureAnalysis = await analyzeExposure(targetUrl, controller.signal).catch((error) => ({ findings: [], discoveredUrls: [], scannedUrls: [], error: error instanceof Error ? error.message : "unknown" }));
       const httpsScore = targetUrl.protocol === "https:" ? 100 : 40;
       const sslScore = sslAnalysis.valid ? (sslAnalysis.daysRemaining > 30 ? 100 : 70) : 20;
       const technologyScore = technologyAnalysis.technologies.length > 0 ? 90 : 60;
       const websiteScore = calculateSecurityScore([httpsScore, headerAnalysis.score, sslScore, domainAnalysis.score, dnsAnalysis.score, technologyScore]);
-      const findings = [...headerAnalysis.findings, ...dnsAnalysis.findings];
+      const findings = [...headerAnalysis.findings, ...dnsAnalysis.findings, ...exposureAnalysis.findings];
       if (!sslAnalysis.valid) findings.push({ title: "SSL Certificate", severity: "High", description: "Unable to verify SSL certificate." });
       if (sslAnalysis.valid && sslAnalysis.daysRemaining < 30) findings.push({ title: "SSL Certificate Expiration", severity: "Medium", description: `Certificate expires in ${sslAnalysis.daysRemaining} days.` });
       if (!domainAnalysis.emailSecurity.SPF) findings.push({ title: "Missing SPF Record", severity: "Medium", description: "Domain does not have SPF email protection configured." });
       if (!domainAnalysis.emailSecurity.DMARC) findings.push({ title: "Missing DMARC Protection", severity: "Medium", description: "Domain does not have DMARC email authentication configured." });
-      return NextResponse.json({ target, overview: { overallScore: websiteScore, grade: websiteScore >= 90 ? "Excellent" : websiteScore >= 75 ? "Good" : websiteScore >= 50 ? "Needs Improvement" : "Critical" }, categories: { websiteSecurity: websiteScore, infrastructure: sslAnalysis.valid ? 90 : 40, domainSecurity: domainAnalysis.score, technology: technologyScore, dns: dnsAnalysis.score }, ssl: sslAnalysis, domain: domainAnalysis, dns: dnsAnalysis, technology: technologyAnalysis, findings, checks: { https: targetUrl.protocol === "https:", status: response.status } }, { headers: { "Cache-Control": "no-store" } });
+      return NextResponse.json({ target, overview: { overallScore: websiteScore, grade: websiteScore >= 90 ? "Excellent" : websiteScore >= 75 ? "Good" : websiteScore >= 50 ? "Needs Improvement" : "Critical" }, categories: { websiteSecurity: websiteScore, infrastructure: sslAnalysis.valid ? 90 : 40, domainSecurity: domainAnalysis.score, technology: technologyScore, dns: dnsAnalysis.score, exposure: exposureAnalysis.findings.length ? 25 : 100 }, ssl: sslAnalysis, domain: domainAnalysis, dns: dnsAnalysis, technology: technologyAnalysis, exposure: { discoveredUrls: exposureAnalysis.discoveredUrls, scannedUrls: exposureAnalysis.scannedUrls, findings: exposureAnalysis.findings.length }, findings, checks: { https: targetUrl.protocol === "https:", status: response.status } }, { headers: { "Cache-Control": "no-store" } });
     } finally { clearTimeout(timeout); }
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
