@@ -1,363 +1,171 @@
-"use client";
-
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import ReactiveHero from "@/components/ReactiveHero";
-import ProjectShowcase from "@/components/ProjectShowcase";
 
-const services = [
-{
-number: "01",
-title: "Websites",
-tag: "DIGITAL EXPERIENCES",
-},
-{
-number: "02",
-title: "Apps",
-tag: "MOBILE & WEB",
-},
-{
-number: "03",
-title: "Software",
-tag: "DIGITAL PRODUCTS",
-},
-{
-number: "04",
-title: "AI",
-tag: "INTELLIGENT SYSTEMS",
-},
-{
-number: "05",
-title: "Cloud",
-tag: "INFRASTRUCTURE",
-},
-{
-number: "06",
-title: "Cybersecurity",
-tag: "SECURITY",
-},
+const solutions = [
+  {
+    number: "01",
+    title: "Web Development",
+    summary: "High-performance websites and digital experiences built to represent your business properly.",
+    includes: ["Business & corporate websites", "Landing pages & campaign sites", "E-commerce experiences", "CMS, SEO & analytics setup"],
+  },
+  {
+    number: "02",
+    title: "Mobile Apps",
+    summary: "Customer and internal mobile applications for iOS and Android, designed around real workflows.",
+    includes: ["iOS & Android applications", "Cross-platform development", "Customer & staff apps", "API and service integrations"],
+  },
+  {
+    number: "03",
+    title: "Software & Web Apps",
+    summary: "Custom digital products that turn complex business processes into simple, usable systems.",
+    includes: ["Custom business software", "Web applications & portals", "SaaS products", "APIs and integrations"],
+  },
+  {
+    number: "04",
+    title: "ERP & POS Systems",
+    summary: "Business systems that connect operations, sales, inventory, customers, and reporting in one place.",
+    includes: ["ERP & business management", "POS and sales workflows", "Inventory & stock control", "Roles, reports & operational dashboards"],
+  },
+  {
+    number: "05",
+    title: "AI Integration",
+    summary: "Practical AI embedded into products and workflows to automate repetitive work and improve decisions.",
+    includes: ["AI assistants & copilots", "Document and data intelligence", "AI-powered workflows", "Model and API integration"],
+  },
+  {
+    number: "06",
+    title: "Cybersecurity",
+    summary: "Security engineering and assessments that help identify weaknesses before they become expensive problems.",
+    includes: ["Website & application security", "Vulnerability assessments", "Security reviews", "Risk and hardening guidance"],
+  },
+  {
+    number: "07",
+    title: "Business Automation",
+    summary: "Connected systems that reduce manual work and move information between the tools your business already uses.",
+    includes: ["Workflow automation", "System integrations", "Notifications & task automation", "Operational process design"],
+  },
 ];
 
-const buildItems = [
-"WEBSITES",
-"APPS",
-"SOFTWARE",
-"AI SYSTEMS",
-"CLOUD",
-"SECURITY",
+const principles = [
+  ["01", "Built around the business", "We start with the problem, users, workflows, and outcome — then choose the technology."],
+  ["02", "Designed to be used", "Clear interfaces, responsive experiences, and thoughtful interactions are part of the build, not decoration."],
+  ["03", "Security from the foundation", "We treat security, privacy, reliability, and maintainability as engineering requirements."],
 ];
 
 export default function Home() {
-return ( <main className="min-h-screen overflow-hidden bg-[#030405] text-[#F5F5F5]">
-{/* ========================================================= */}
-{/* HERO */}
-{/* ========================================================= */}
+  return (
+    <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+      <section className="relative flex min-h-[92vh] items-center overflow-hidden border-b border-[var(--border)] pt-28">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.06] blur-[140px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:72px_72px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_72%)]" />
 
-
-  <section className="relative px-4 py-4 sm:px-6 lg:px-8">
-  <div className="relative flex min-h-screen items-center rounded-[2rem]">
-      {/* Neutral atmospheric lighting */}
-
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-white/[0.012] blur-[180px]" />
-
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-blue-500/[0.018] blur-[180px]" />
-
-      {/* Hero visual layer */}
-
-      <ReactiveHero />
-
-      {/* Hero content */}
-
-      <div className="relative z-50 mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-8">
-        {/* BRAND */}
-
-        <Reveal>
-          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-blue-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400/[0.8] shadow-[0_0_15px_rgba(59,130,246,0.55)]" />
-            OLYR LABS
-          </div>
-        </Reveal>
-
-        {/* HERO TITLE */}
-
-        <Reveal delay={100}>
-          <h1 className="mt-10 max-w-6xl text-6xl font-semibold leading-[0.88] tracking-[-0.06em] sm:text-8xl lg:text-[10rem]">
-            We build
-            <br />
-            <span className="text-[#A1A1AA]">digital.</span>
-          </h1>
-        </Reveal>
-
-        {/* HERO DESCRIPTION */}
-
-        <Reveal delay={200}>
-          <div className="mt-12 flex flex-col justify-between gap-10 border-t border-white/[0.08] pt-8 md:flex-row md:items-end">
-            <p className="max-w-md text-lg leading-7 text-[#A1A1AA]">
-              Websites. Apps. Software. AI.
-              <br />
-              Cloud. Security.
-            </p>
-
-            <Link
-              href="/projects"
-              aria-label="Explore what we build"
-              className="group relative z-50 inline-flex w-fit cursor-pointer items-center gap-4 text-sm font-medium text-white"
-            >
-              <span className="transition-colors duration-300 group-hover:text-blue-400">
-                Explore what we build
-              </span>
-
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.16] bg-white/[0.02] text-base transition-all duration-300 group-hover:translate-x-1 group-hover:border-blue-400/70 group-hover:bg-blue-400 group-hover:text-black">
-                →
-              </span>
-            </Link>
-          </div>
-        </Reveal>
-
-        {/* ===================================================== */}
-        {/* HERO VISUAL */}
-        {/* ===================================================== */}
-
-        <Reveal delay={300}>
-          <div className="group relative mt-24 h-[300px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#050505] sm:h-[420px]">
-            {/* Subtle neutral highlight */}
-
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.025),transparent_30%,transparent_70%,rgba(59,130,246,0.012))]" />
-
-            {/* Restrained ambient light */}
-
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[90px]" />
-
-              {/* Very subtle energy lines */}
-
-              <div className="absolute -left-20 top-1/2 h-px w-[140%] rotate-12 bg-gradient-to-r from-transparent via-blue-400/[0.12] to-transparent animate-[pulse_4s_ease-in-out_infinite]" />
-
-              <div className="absolute -left-20 top-1/2 h-px w-[140%] -rotate-12 bg-gradient-to-r from-transparent via-blue-400/[0.08] to-transparent animate-[pulse_5s_ease-in-out_infinite]" />
-            </div>
-
-            {/* Floating points */}
-
-            <div className="pointer-events-none absolute left-[15%] top-[25%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)]" />
-
-            <div className="pointer-events-none absolute left-[75%] top-[20%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:1s]" />
-
-            <div className="pointer-events-none absolute left-[85%] top-[70%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:2s]" />
-
-            <div className="pointer-events-none absolute left-[25%] top-[75%] h-1 w-1 animate-pulse rounded-full bg-blue-400/[0.55] shadow-[0_0_12px_rgba(59,130,246,0.35)] [animation-delay:3s]" />
-
-            {/* Center content */}
-
-            <div className="pointer-events-none relative flex h-full items-center justify-center">
-              <div className="relative text-center">
-                <p className="text-xs uppercase tracking-[0.4em] text-[#71717A]">
-                  DIGITAL SYSTEMS
-                </p>
-
-                <p className="mt-5 text-4xl font-semibold tracking-[-0.04em] transition duration-500 group-hover:scale-105 sm:text-6xl">
-                  Built for what&apos;s next.
-                </p>
-
-                <div className="mx-auto mt-8 h-px w-24 bg-gradient-to-r from-transparent via-blue-400/[0.55] to-transparent opacity-60" />
+        <div className="relative mx-auto w-full max-w-7xl px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+          <Reveal>
+            <div className="mx-auto max-w-5xl text-center">
+              <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--muted)] sm:text-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                OLYR Labs · Technology Studio
+              </div>
+              <h1 className="font-[var(--font-space-grotesk)] text-[clamp(3.5rem,9vw,8.5rem)] font-semibold leading-[0.88] tracking-[-0.075em]">
+                Technology built
+                <br />
+                <span className="text-[var(--muted)]">around your business.</span>
+              </h1>
+              <p className="mx-auto mt-9 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
+                OLYR Labs designs and builds websites, mobile apps, custom software, ERP and POS systems, AI integrations, cybersecurity solutions, and business automation.
+              </p>
+              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link href="/quote" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--text)] px-7 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">
+                  Request a Quote <span className="ml-3">→</span>
+                </Link>
+                <Link href="#solutions" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-7 text-sm font-semibold text-[var(--text)] transition hover:-translate-y-0.5 hover:border-[var(--accent)]">
+                  Explore solutions
+                </Link>
               </div>
             </div>
-
-            {/* Subtle hover border */}
-
-            <div className="pointer-events-none absolute inset-0 rounded-3xl border border-transparent transition duration-700 group-hover:border-blue-400/[0.18]" />
-          </div>
-        </Reveal>
-      </div>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* MARQUEE */}
-  {/* ========================================================= */}
-
-  <section className="px-4 py-4 sm:px-6 lg:px-8">
-    <div className="glass-card overflow-hidden rounded-2xl py-6">
-      <div className="flex overflow-hidden whitespace-nowrap">
-        <div className="flex animate-[marquee_20s_linear_infinite] gap-10 text-sm font-medium tracking-[0.2em] text-[#71717A]">
-          {[...buildItems, ...buildItems].map((item, index) => (
-            <div
-              key={`${item}-${index}`}
-              className="flex items-center gap-10"
-            >
-              <span className="text-blue-400/[0.75]">+</span>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* SERVICES */}
-  {/* ========================================================= */}
-
-  <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-    {/* Glass effect removed ONLY from this wrapper */}
-
-    <div className="mx-auto max-w-7xl rounded-[2rem] p-6 sm:p-10 lg:p-12">
-      <Reveal>
-        <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
-              Capabilities
-            </p>
-
-            <h2 className="mt-6 text-5xl font-semibold tracking-[-0.05em] sm:text-7xl">
-              What we build.
-            </h2>
-          </div>
-
-          <Link
-            href="/services"
-            className="group flex items-center gap-3 text-sm text-[#A1A1AA] transition hover:text-white"
-          >
-            View all services
-
-            <span className="transition group-hover:translate-x-1 group-hover:text-blue-400">
-              →
-            </span>
-          </Link>
-        </div>
-      </Reveal>
-
-      {/* SERVICE CARDS */}
-
-      <div className="grid overflow-hidden md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, index) => (
-          <Reveal key={service.number} delay={index * 80}>
-            <Link
-              href="/services"
-              className="group relative block min-h-[300px] overflow-hidden border-b border-r border-white/[0.08] bg-[#050505] p-8 transition-colors duration-500 hover:bg-[#08090B] sm:p-10"
-            >
-              <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-500/0 blur-[100px] transition-all duration-700 group-hover:bg-blue-500/[0.045]" />
-
-              <div className="relative flex h-full flex-col justify-between">
-                <div className="flex items-start justify-between">
-                  <span className="text-xs text-[#52525B]">
-                    {service.number}
-                  </span>
-
-                  <span className="text-[10px] tracking-[0.2em] text-[#52525B]">
-                    {service.tag}
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-3xl font-semibold tracking-[-0.04em] transition duration-300 group-hover:translate-x-1 group-hover:text-blue-400">
-                    {service.title}
-                  </h3>
-
-                  <div className="mt-6 flex items-center justify-between border-t border-white/[0.08] pt-5">
-                    <span className="text-xs uppercase tracking-[0.2em] text-[#52525B]">
-                      Explore
-                    </span>
-
-                    <span className="transition duration-300 group-hover:translate-x-2 group-hover:text-blue-400">
-                      →
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
           </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
+        </div>
+      </section>
 
-  {/* ========================================================= */}
-  {/* PROJECTS */}
-  {/* ========================================================= */}
+      <section id="solutions" className="border-b border-[var(--border)] py-24 sm:py-32 lg:py-40">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="mb-14 max-w-3xl sm:mb-20">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--accent)] sm:text-xs">Solutions</p>
+              <h2 className="mt-5 font-[var(--font-space-grotesk)] text-4xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-6xl">
+                If your business needs it,
+                <br />
+                <span className="text-[var(--muted)]">we can build it.</span>
+              </h2>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--muted)]">
+                No vague technology packages. Each solution below tells you exactly what we can build and where it fits.
+              </p>
+            </div>
+          </Reveal>
 
-  <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-    <div className="mx-auto max-w-7xl">
-      <Reveal delay={100}>
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-white/[0.14] bg-white/[0.035] p-[1px] shadow-[0_30px_100px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-blur-2xl">
-          <div className="pointer-events-none absolute -inset-20 bg-blue-500/[0.025] blur-[140px]" />
-
-          <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-[linear-gradient(120deg,rgba(255,255,255,0.06),transparent_25%,transparent_65%,rgba(96,165,250,0.018))]" />
-
-          <div className="relative overflow-hidden rounded-[2.4rem]">
-            <ProjectShowcase />
+          <div className="grid gap-px overflow-hidden border border-[var(--border)] bg-[var(--border)] md:grid-cols-2 xl:grid-cols-3">
+            {solutions.map((solution, index) => (
+              <Reveal key={solution.number} delay={index * 70}>
+                <article className="group flex h-full flex-col bg-[var(--surface)] p-7 transition duration-500 hover:bg-[var(--surface-muted)] sm:p-9">
+                  <div className="flex items-center justify-between text-xs text-[var(--subtle)]">
+                    <span>{solution.number}</span>
+                    <span className="h-px w-10 bg-[var(--border-strong)] transition-all duration-500 group-hover:w-16 group-hover:bg-[var(--accent)]" />
+                  </div>
+                  <h3 className="mt-16 font-[var(--font-space-grotesk)] text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{solution.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{solution.summary}</p>
+                  <div className="mt-8 border-t border-[var(--border)] pt-6">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--subtle)]">What&apos;s included</p>
+                    <ul className="mt-4 space-y-3">
+                      {solution.includes.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm text-[var(--text)]">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </Reveal>
-    </div>
-  </section>
+      </section>
 
-  {/* ========================================================= */}
-  {/* STATEMENT */}
-  {/* ========================================================= */}
+      <section className="border-b border-[var(--border)] py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--accent)] sm:text-xs">How we build</p>
+                <h2 className="mt-5 font-[var(--font-space-grotesk)] text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">Good technology starts with understanding.</h2>
+              </div>
+              <div className="border-t border-[var(--border)]">
+                {principles.map(([number, title, text]) => (
+                  <div key={number} className="grid gap-5 border-b border-[var(--border)] py-7 sm:grid-cols-[48px_0.8fr_1.2fr] sm:items-start sm:gap-6">
+                    <span className="text-xs text-[var(--subtle)]">{number}</span>
+                    <h3 className="font-[var(--font-space-grotesk)] text-xl font-semibold tracking-[-0.03em]">{title}</h3>
+                    <p className="text-sm leading-7 text-[var(--muted)]">{text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-  <section className="px-4 py-24 sm:px-6 lg:px-8 lg:py-40">
-    <div className="glass-section mx-auto max-w-7xl rounded-[2rem] p-8 sm:p-12 lg:p-20">
-      <Reveal>
-        <p className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-[#F5F5F5] sm:text-7xl lg:text-8xl">
-          We turn ideas into
-          <span className="text-blue-400">
-            {" "}
-            digital reality.
-          </span>
-        </p>
-      </Reveal>
-    </div>
-  </section>
-
-  {/* ========================================================= */}
-  {/* CTA */}
-  {/* ========================================================= */}
-
-  <section className="px-4 pb-4 sm:px-6 lg:px-8">
-    <div className="glass-panel relative overflow-hidden rounded-[2rem] py-40">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.025] blur-[180px]" />
-
-      <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-8">
+      <section className="py-24 sm:py-36">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
-            Start something
-          </p>
-        </Reveal>
-
-        <Reveal delay={100}>
-          <h2 className="mt-8 text-5xl font-semibold tracking-[-0.06em] sm:text-7xl lg:text-8xl">
-            Let&apos;s build.
-          </h2>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact"
-              className="group flex items-center gap-4 rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition duration-300 hover:bg-blue-400"
-            >
-              Start a project
-
-              <span className="transition group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-
-            <a
-              href="https://wa.me/94781026353?text=Hi%20OLYR%20Labs!%20I'm%20interested%20in%20working%20with%20you."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-white/20 bg-white/[0.02] px-8 py-4 text-sm font-semibold transition duration-300 hover:border-blue-400/60 hover:bg-blue-400/[0.04]"
-            >
-              Chat on WhatsApp
-            </a>
+          <div className="mx-auto max-w-5xl px-5 text-center sm:px-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--accent)] sm:text-xs">Start a conversation</p>
+            <h2 className="mt-5 font-[var(--font-space-grotesk)] text-5xl font-semibold tracking-[-0.065em] sm:text-7xl">Have something to build?</h2>
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-[var(--muted)]">Tell us what you need. We&apos;ll help you work out the right technology, scope, and next step.</p>
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/quote" className="rounded-full bg-[var(--text)] px-7 py-3.5 text-sm font-semibold text-[var(--background)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-white">Request a Quote →</Link>
+              <a href="tel:+94781026353" className="rounded-full border border-[var(--border)] px-7 py-3.5 text-sm font-semibold transition hover:border-[var(--accent)]">Call +94 78 102 6353</a>
+            </div>
           </div>
         </Reveal>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-);
+      </section>
+    </main>
+  );
 }
